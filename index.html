@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hermès — The Psychology of Refusal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #E8611A;
+    --orange-deep: #C94F0E;
+    --orange-light: #F07030;
+    --cream: #F5EFE6;
+    --cream-dark: #EDE3D5;
+    --brown: #3D1F0A;
+    --brown-mid: #6B3A1F;
+    --brown-light: #A0643C;
+    --gold: #C8A96E;
+    --gold-light: #E2C992;
+    --white: #FDFAF6;
+    --black: #1A0A00;
+    --text: #2C1506;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--brown);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 60% at 50% 40%, rgba(232,97,26,0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(200,169,110,0.08) 0%, transparent 60%);
+  }
+
+  .hero-texture {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C8A96E' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .hero-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .hero-logo {
+    width: 320px;
+    margin: 0 auto 20px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+  }
+
+  .hero-logo svg {
+    width: 100%;
+    height: auto;
+    filter: brightness(0) invert(1);
+  }
+
+  .hero-wordmark {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 10px;
+    color: rgba(245,239,230,0.4);
+    text-transform: uppercase;
+    margin-bottom: 64px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.9s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 7vw, 88px);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.05;
+    letter-spacing: -1px;
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1s forwards;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--orange-light);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2.5vw, 22px);
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,239,230,0.65);
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto 60px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.3s forwards;
+  }
+
+  .hero-divider {
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, var(--orange), transparent);
+    margin: 0 auto 48px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.5s forwards;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 64px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.7s forwards;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 500;
+    color: var(--orange-light);
+    display: block;
+    line-height: 1;
+  }
+
+  .hero-stat-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: rgba(245,239,230,0.45);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 8px;
+  }
+
+  .scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 60px;
+    opacity: 0;
+    animation: fadeUp 1s ease 2.2s forwards;
+  }
+
+  .scroll-hint span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: rgba(245,239,230,0.3);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(245,239,230,0.3), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  /* ── SECTION BASE ── */
+  section { position: relative; }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── ORIGIN ── */
+  .origin {
+    background: var(--cream);
+    padding: 120px 0;
+    overflow: hidden;
+  }
+
+  .origin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .section-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 5px;
+    color: var(--orange);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(34px, 4vw, 54px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--brown);
+    margin-bottom: 32px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--orange);
+  }
+
+  .body-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--brown-mid);
+    margin-bottom: 20px;
+  }
+
+  .origin-visual {
+    position: relative;
+  }
+
+  .origin-card {
+    background: var(--brown);
+    padding: 48px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .origin-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, var(--orange), var(--gold));
+  }
+
+  .origin-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 96px;
+    font-weight: 700;
+    color: rgba(232,97,26,0.12);
+    line-height: 1;
+    margin-bottom: -20px;
+  }
+
+  .origin-fact {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .origin-note {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-section {
+    background: var(--brown);
+    padding: 120px 0;
+  }
+
+  .timeline-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .timeline-header .section-title {
+    color: var(--cream);
+  }
+
+  .timeline {
+    position: relative;
+    padding: 0 0 0 40px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--orange) 10%, var(--orange) 90%, transparent);
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    margin-bottom: 56px;
+    position: relative;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -44px;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--orange);
+    border: 2px solid var(--brown);
+    box-shadow: 0 0 0 3px rgba(232,97,26,0.3);
+  }
+
+  .timeline-year {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--orange-light);
+    padding-top: 2px;
+  }
+
+  .timeline-text h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .timeline-text p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(245,239,230,0.6);
+    line-height: 1.65;
+  }
+
+  /* ── ORANGE BOX ── */
+  .orange-section {
+    background: var(--orange);
+    padding: 120px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .orange-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(0,0,0,0.1) 100%);
+  }
+
+  .orange-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+  }
+
+  .orange-section .section-title {
+    color: var(--white);
+  }
+
+  .orange-section .section-tag {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .orange-section .body-text {
+    color: rgba(255,255,255,0.85);
+  }
+
+  .orange-box-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .box-3d {
+    width: 220px;
+    height: 220px;
+    background: var(--orange-deep);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.2), 16px 16px 0 rgba(0,0,0,0.1);
+    transform: rotate(-3deg);
+    transition: transform 0.4s ease;
+  }
+
+  .box-3d:hover { transform: rotate(0deg) scale(1.03); }
+
+  .box-ribbon {
+    position: absolute;
+    top: 40px; left: 0; right: 0;
+    height: 32px;
+    background: var(--brown);
+    opacity: 0.3;
+  }
+
+  .box-logo-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: rgba(255,255,255,0.9);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  .box-h {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    color: rgba(255,255,255,0.15);
+    line-height: 1;
+    position: absolute;
+  }
+
+  .orange-facts {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 32px;
+  }
+
+  .orange-fact-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .orange-fact-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.6);
+    margin-top: 8px;
+    flex-shrink: 0;
+  }
+
+  .orange-fact-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+  }
+
+  /* ── LOGO SECTION ── */
+  .logo-section {
+    background: var(--cream-dark);
+    padding: 120px 0;
+  }
+
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .logo-visual {
+    text-align: center;
+  }
+
+  .logo-frame {
+    display: inline-block;
+    padding: 56px;
+    background: var(--brown);
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .logo-frame::after {
+    content: 'Est. 1837';
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 8px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .logo-frame svg {
+    width: 240px;
+    height: auto;
+    filter: brightness(0) saturate(100%) invert(68%) sepia(45%) saturate(400%) hue-rotate(5deg) brightness(100%) contrast(90%);
+  }
+
+  .logo-insight {
+    background: var(--brown);
+    padding: 28px 32px;
+    margin-top: 20px;
+    border-left: 3px solid var(--orange);
+  }
+
+  .logo-insight p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+
+  .logo-insight cite {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 12px;
+    font-style: normal;
+  }
+
+  /* ── PSYCHOLOGY TACTICS ── */
+  .tactics-section {
+    background: var(--brown);
+    padding: 120px 0;
+  }
+
+  .tactics-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .tactics-header .section-title { color: var(--cream); }
+
+  .tactics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(232,97,26,0.1);
+  }
+
+  .tactic-card {
+    background: var(--brown);
+    padding: 52px 48px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease;
+  }
+
+  .tactic-card:hover { background: rgba(61,31,10,0.5); }
+
+  .tactic-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 0;
+    background: var(--orange);
+    transition: height 0.4s ease;
+  }
+
+  .tactic-card:hover::before { height: 100%; }
+
+  .tactic-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    color: rgba(232,97,26,0.08);
+    line-height: 1;
+    margin-bottom: -16px;
+  }
+
+  .tactic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .tactic-title em { 
+    font-style: italic; 
+    color: var(--orange-light); 
+  }
+
+  .tactic-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(245,239,230,0.65);
+    line-height: 1.75;
+  }
+
+  .tactic-card.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, rgba(232,97,26,0.12), rgba(61,31,10,0.8));
+    border-top: 1px solid rgba(232,97,26,0.3);
+    border-bottom: 1px solid rgba(232,97,26,0.3);
+  }
+
+  .tactic-card.featured .tactic-body {
+    color: rgba(245,239,230,0.8);
+    font-size: 19px;
+  }
+
+  /* ── NUMBERS ── */
+  .numbers-section {
+    background: var(--cream);
+    padding: 120px 0;
+  }
+
+  .numbers-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .numbers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--brown-light);
+    border: 1px solid var(--brown-light);
+  }
+
+  .number-card {
+    background: var(--cream);
+    padding: 56px 40px;
+    text-align: center;
+    transition: background 0.3s ease;
+  }
+
+  .number-card:hover { background: var(--cream-dark); }
+
+  .number-value {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    font-weight: 500;
+    color: var(--orange);
+    display: block;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .number-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: var(--brown-mid);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 16px;
+  }
+
+  .number-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--brown-light);
+    line-height: 1.5;
+  }
+
+  /* ── SCARF ── */
+  .craft-section {
+    background: var(--orange);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .craft-section::after {
+    content: 'HERMÈS';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 120px;
+    font-weight: 300;
+    letter-spacing: 30px;
+    color: rgba(255,255,255,0.05);
+    white-space: nowrap;
+  }
+
+  .craft-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+  }
+
+  .craft-section .section-title { color: var(--white); }
+  .craft-section .section-tag { color: rgba(255,255,255,0.6); }
+  .craft-section .body-text { color: rgba(255,255,255,0.85); }
+
+  .craft-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .craft-stat {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(4px);
+    padding: 28px 24px;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .craft-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--white);
+    display: block;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .craft-stat-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .craft-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .craft-step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.08);
+    padding: 20px 24px;
+    border-left: 2px solid rgba(255,255,255,0.3);
+  }
+
+  .step-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: 3px;
+  }
+
+  .step-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.5;
+  }
+
+  /* ── BIRKIN SECTION ── */
+  .birkin-section {
+    background: var(--cream-dark);
+    padding: 120px 0;
+  }
+
+  .birkin-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .birkin-price-evolution {
+    background: var(--brown);
+    padding: 40px;
+    border-radius: 2px;
+  }
+
+  .price-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(245,239,230,0.08);
+  }
+
+  .price-row:last-child { border-bottom: none; }
+
+  .price-year {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: rgba(245,239,230,0.4);
+  }
+
+  .price-bar-wrap {
+    flex: 1;
+    margin: 0 20px;
+    height: 4px;
+    background: rgba(245,239,230,0.05);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .price-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--gold), var(--orange));
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--cream);
+    min-width: 80px;
+    text-align: right;
+  }
+
+  .birkin-insight {
+    padding-top: 20px;
+  }
+
+  .insight-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-style: italic;
+    color: var(--brown);
+    line-height: 1.4;
+    margin-bottom: 24px;
+    border-left: 4px solid var(--orange);
+    padding-left: 24px;
+  }
+
+  .insight-note {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--brown-mid);
+    line-height: 1.75;
+  }
+
+  .investment-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    padding: 8px 20px;
+    margin-top: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  /* ── FINAL CTA ── */
+  .cta-section {
+    background: var(--brown);
+    padding: 140px 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(232,97,26,0.1) 0%, transparent 70%);
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-logo {
+    width: 200px;
+    margin: 0 auto 48px;
+  }
+
+  .cta-logo svg {
+    width: 100%;
+    height: auto;
+    filter: brightness(0) saturate(100%) invert(68%) sepia(45%) saturate(400%) hue-rotate(5deg) brightness(100%) contrast(90%);
+  }
+
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 60px);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+
+  .cta-title em {
+    font-style: italic;
+    color: var(--orange-light);
+  }
+
+  .cta-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(245,239,230,0.55);
+    margin-bottom: 56px;
+    line-height: 1.5;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    padding: 18px 56px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid var(--orange);
+  }
+
+  .cta-button:hover {
+    background: transparent;
+    color: var(--orange-light);
+  }
+
+  .cta-divider {
+    width: 1px;
+    height: 60px;
+    background: rgba(245,239,230,0.15);
+    margin: 56px auto 0;
+  }
+
+  .cta-footer {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: rgba(245,239,230,0.2);
+    text-transform: uppercase;
+    margin-top: 24px;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollLine {
+    0%, 100% { transform: scaleY(1); opacity: 0.3; }
+    50% { transform: scaleY(0.5); opacity: 0.8; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.25s; }
+  .reveal-delay-3 { transition-delay: 0.4s; }
+  .reveal-delay-4 { transition-delay: 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .origin-grid, .orange-grid, .logo-grid, .craft-grid, .birkin-grid { 
+      grid-template-columns: 1fr; 
+      gap: 48px;
+    }
+    .tactics-grid { grid-template-columns: 1fr; }
+    .tactic-card.featured { grid-column: span 1; }
+    .numbers-grid { grid-template-columns: 1fr; }
+    .section-inner { padding: 0 24px; }
+    .hero-stats { gap: 32px; }
+    .craft-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-texture"></div>
+  <div class="hero-content">
+    <span class="hero-label">A Study in Luxury Psychology</span>
+
+    <div class="hero-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="981.333" height="981.333" viewBox="0 0 736 736"><path d="M449.3 203.7c-1.8 1.2-2.9 1.3-5.3.5-3-1.1-3.9-.5-2.1 1.3.6.6-.1 2.5-2 5-1.6 2.2-3.1 4.7-3.5 5.5-.3.8-1 2.4-1.4 3.5-1.4 3.1-2.8 13.3-2.2 16 .3 1.6 1.1 2.5 2.3 2.5.9 0 4.6 2.3 8.1 5.1 6.4 5.2 13.6 9.2 15 8.3s.9-10.2-.8-14.4c-1.6-3.9-1.6-4 .7-5.9 1.3-1.1 2.8-1.6 3.2-1.2 1.1 1.1 1.4 19.9.4 23.3-.9 3.3-4.3 4.5-8.6 3-2.4-.9-3.2-.7-4.6.7-.8 1-6.6 4.4-12.8 7.6s-11.4 5.9-11.5 6.1c-.9.7 1.2 6.7 3.8 10.6 3.3 4.9 7 7.4 14.9 9.8l5.6 1.7 3.3 8.4c1.8 4.6 4.4 10.6 5.8 13.3 1.3 2.8 2.4 6.4 2.4 8.2s.6 3.4 1.4 3.7c.9.4 1.2 1.4.9 2.6-.5 2.1-1 2.1-37.4 2.1-34.5 0-36.9-.1-36.7-1.8.1-.9 0-4.2 0-7.3-.2-5.1-.6-6-4.6-10.2-5.6-6-6.3-9.2-2.7-12.6 1.5-1.4 4.6-4.3 6.9-6.5 2.6-2.3 4.2-4.8 4.2-6.1s.7-2.6 1.6-2.9c3-1.2 9.4-.6 14.1 1.3 5.3 2.1 7.4 2.4 14.3 2.2 7.2-.2 8-1.3 3.9-5.8-1.9-2.1-4.1-4.9-5-6.3l-1.6-2.5-9.4 3.7c-20.8 8-51 16.8-57.9 16.8-1.9 0-10.8 1.8-19.7 4.1-11.3 2.8-16.8 3.7-17.9 3.1-1.4-.8-1-1.2 2.2-2.2 7.9-2.6 11.8-6.9 17-18.7 1.7-4.1 3.4-7.6 3.7-7.9.2-.3 1.4 1.4 2.6 3.8 2.7 5.4 6.1 7.9 11.7 8.6 3.1.3 4.5 1 4.9 2.3.7 2.1 2.2 2.4 5.8 1 1.9-.8 2.3-1.5 1.9-3.9-.3-2.3.1-3.3 1.7-4.1 2-1.1 2.1-.9 2.1 2.9 0 3.5.3 4.1 1.8 3.6.9-.2 3.5-1 5.8-1.6 3.7-1.1 4.2-1.6 5.3-5.8 1.8-6.8 7.7-17.9 13.2-24.9l4.8-6.2-5.5-1.2c-7.7-1.7-14.9-.1-23.9 5.3-8.9 5.5-12.2 11.3-13.2 23l-.6 7.8h-3.8c-4.9 0-9.2-3.6-11.5-9.6-1.7-4.4-1.7-4.7.3-8.8 1.2-2.4 4.4-7 7.2-10.4 6.3-7.5 5.3-8.1-1.7-1.1-3.9 3.9-6.8 8.5-11.8 18.5-5.1 10.3-7.6 14.3-11 17.3-6.6 5.8-15.8 7.6-23.2 4.5-5.3-2.2-8.7-5.7-15.2-15.9-10.8-16.8-13.4-18.2-36.4-20.1l-16-1.2-2.6-3.1c-2.6-3.2-4.6-3.9-5.2-2-.3.9-1 .9-2.6 0-3.1-1.7-6.2-.5-6.2 2.3 0 3.4 3.5 7.3 9.1 10.1l4.9 2.5v6c0 7.9-1.2 10.5-5.9 12.9-4.8 2.5-7.1 5.6-7.1 9.6 0 4.2-6.1 10-12.3 11.6-5.6 1.4-6 2.4-1.2 3.3 3.4.7 3.5.8 3.5 5.6 0 6.2 1.3 9.7 5.3 13.8 4.6 4.8 8.4 6.5 14.7 6.5 9.9 0 17.5-5.8 20-15.2.6-2.4.9-5.9.5-7.8-.6-3.1-.4-3.4 2.5-3.9 4.7-1 4.4-2-.8-3.4-2.6-.8-6.4-2.8-8.4-4.6-4.5-4.1-10.5-5.8-16.9-4.9-4.7.7-4.9.6-4.9-1.7 0-3.1.9-4.2 4.9-6.3 4.4-2.2 10.3-1.7 22.6 2.1 7.7 2.3 11.1 2.8 23.5 3l14.4.3 2.3 3.8 2.3 3.8 6.7-.3c6.8-.2 6.8-.2 3.8 1.4-1.6.9-4.3 2.8-6 4.3-1.6 1.5-4.9 3.6-7.2 4.6-2.4 1-4.3 2.2-4.3 2.6s1.6 1.1 3.5 1.5c3.1.5 3.5 1 3.5 3.5 0 3.5 2.4 9.6 4.8 12.2 7.5 8.3 22.6 7.1 28.8-2.2 2.8-4.3 3.7-10.9 2.1-16.2-.7-2.1-.4-2.7 1.8-3.7 3.7-1.7 5.9-1.5 8 .8 3.5 3.9 8.3 2.3 9.1-3.1 1-6.3 5.5-9.2 17.4-11.3l3.4-.6-2.7 2.8c-1.5 1.5-2.7 3.9-2.7 5.2 0 1.2-1 7-2.2 12.6-2 9.7-2 10.5-.5 12.2 2.3 2.6 2.2 5.2-.3 5.2-1.1 0-2.1-.3-2.1-.8-.9-5.5-.4-12.8 1.2-19 2-7.8 2.5-14.3 1.1-12.7-1.5 1.6-6.3 23.8-5.4 24.4.5.3.7 2.3.4 4.3l-.4 3.7-14.6.3c-10.5.2-14.7.6-15 1.5-.3 1 4.3 1.3 20.7 1.3 16.6 0 21.1-.3 21.1-1.3 0-.7-.4-1.7-.9-2.2-3.3-3.5-3.1-14.5.5-22 2.2-4.8 13.9-16.5 20.7-20.9 4.7-3.1 2.9-.3-3.4 5.4-9.4 8.4-9.9 8.9-9.9 10.5 0 .8 2.5 3.3 5.6 5.6 4 2.9 6.1 5.4 7.5 8.7 1.8 4.2 1.9 4.8.5 5.8-2 1.4-2 2.8-.1 4.4 2.9 2.4 1.4 3-8.1 3-7.2 0-9.5.3-9.2 1.2.6 1.8 111.8 2.4 111.8.7 0-.6-1.8-2.8-3.9-4.8-4.5-4-6.1-7.5-6.1-12.9-.1-2-1-6.2-2.1-9.2-3-8.4-3.5-18.6-1.4-25.9l1.9-6 5-1c2.8-.6 7.9-1.5 11.4-2.2 6.7-1.3 8.6-3 2.3-2.2-4.4.6-10-2.2-17.3-8.6l-4.3-3.8-.1-14.4c-.1-14 0-14.5 2.4-17.1 1.3-1.4 3.1-2.4 3.8-2.1 1.7.6 1.9-1.3.2-2-1-.4-1-.8.1-1.5.7-.5 1-1.5.7-2.1-.5-.7.1-1.1 1.3-1.1 2.3 0 2.8-2.2.9-3.7-.7-.5-3.4-1.7-6-2.7s-5.6-2.8-6.5-4c-2.3-2.9-8-3.9-11-1.9m5.7 3.3c0 .5-.4 1-1 1-.5 0-1-.5-1-1 0-.6.5-1 1-1 .6 0 1 .4 1 1m14 8.4c0 1.1-1.9 1.5-2.5.6-.3-.5.1-1 .9-1 .9 0 1.6.2 1.6.4m-2.3 4.2c.3 1-.4 2.6-2 4.1l-2.5 2.5-.7-3.2c-.5-2.3-.3-3.5.6-4.1 2.1-1.3 3.9-1.1 4.6.7m-6.5 3.9c.6 2.5.3 3.4-1.7 5.5-3.1 3.1-4.5 1.9-5.2-4.4l-.6-4.6 3.4.3c2.7.2 3.4.8 4.1 3.2M226.1 254c5.6 2.9 7.2 3.2 21.4 4 15.8.9 22.2 2.5 25.4 6.3 1.2 1.6 1 1.5-2.5 0-3.3-1.5-6.6-1.7-21.6-1.5-19.3.3-22.6-.3-28-5.5-2.8-2.6-3.8-6.3-1.8-6.3.6 0 3.8 1.4 7.1 3m143.7 3.7c-1.7 2.8-2.2 5.3-2.3 11.1 0 5.9-.4 7.6-1.8 8.3-1.9 1.1-2 .8-1.7-7.6.2-5.3 2.1-10.8 4.7-13.7 2.7-3 3.3-2 1.1 1.9m102 7.7c6.9 4.3 6.8 5-.9 6.1l-4.6.7-.6-3.4c-.3-1.8-.9-4.4-1.3-5.7-.8-2.8-.7-2.8 7.4 2.3m-229.9 19.4c-.4.2-1.7-.1-2.8-.7s-3.6-1.1-5.5-1.1c-4.2 0-4 .3-2.2-4.2l1.5-3.5 4.9 4.6c2.8 2.5 4.6 4.7 4.1 4.9m200 2.3c1.8.4 4.8.5 6.5.2 4-.6 7.1 2.1 3.6 3.2-3.1 1-8.9-.3-14-3.1-2.5-1.4-3.4-2.2-2-1.8s4 1.1 5.9 1.5m15.5 13.1c1.6 4.6 4.1 11.3 5.7 15s3.2 8.1 3.6 9.8c.3 1.8 1.2 3.4 1.9 3.7 2.1.8 1.7 2.3-.6 2.3-1.1 0-2.3-.8-2.6-1.8-.3-.9-1.1-3.1-1.8-4.7-.7-1.7-1.9-4.6-2.5-6.5-.7-1.9-2.8-7.6-4.6-12.5-4.8-13.2-4.8-13.5-3.2-13.5.8 0 2.4 3.2 4.1 8.2m-225.5-1.7c.2.2.1 1-.2 1.8-.3.9-1.6 1.2-3.6.9-2.9-.4-4-2-2.4-3.6.7-.6 5.3 0 6.2.9m110.9 2.2c-.9 2.4-2 3.3-4.6 3.8-3.1.6-9.2-1.1-9.2-2.6 0-.5 7.6-2.9 13.5-4.4 1.5-.4 1.6-.1.3 3.2m-106.6 1.1c-2.7.4-3.7-.2-2.7-1.7.4-.8 1.3-.7 2.8.1l2.2 1.3zM221 301c0 .5-.9 1-2.1 1-1.1 0-1.7-.5-1.4-1 .3-.6 1.3-1 2.1-1s1.4.4 1.4 1m85 1.9c0 .9-6 2.4-6.8 1.6-.5-.5 3.6-2.3 5.6-2.4.6-.1 1.2.3 1.2.8m-81.2 2.8c.4 2.7-1.4 3-4 .6-2.6-2.3-2.2-3.5 1-3.1 1.9.2 2.8.9 3 2.5m5.2-1.5c0 2.2-1.7 4.1-2.9 3.4-1.9-1.2-1.3-4.6.9-4.6 1.1 0 2 .6 2 1.2m8-.5c0 1.4-3.4 4.3-5.2 4.3-1.9 0-2.2-.8-1.2-3.4.6-1.5 6.4-2.4 6.4-.9m-19.5 2.3c1.8 2 1.7 2-2.3 2-4.5 0-4.5 0-3.6-2.4.8-2.2 3.7-2 5.9.4m95.5-1.5c0 .4-.7 1.9-1.5 3.5-1.8 3.4-4.5 4-4.5 1 0-1.1 0-2.3-.1-2.8 0-.4 1-1 2.3-1.4 3.1-.8 3.8-.9 3.8-.3m11.7 1.1c-2.7 1.5-4.7 1.2-4.7-.7 0-.5 1.7-.9 3.8-.9l3.7.1zm-117.2.4c-.3.5-1.6 1-2.8.9-2-.1-2-.2.3-.9 1.4-.4 2.6-.8 2.8-.9s0 .3-.3.9m33.5-.1c0 .9-2.4 2.1-4.2 2.1-.6 0-.6-.6.2-1.5 1.4-1.6 4-2 4-.6m6.3-.2c-.7.2-1.9.2-2.5 0-.7-.3-.2-.5 1.2-.5s1.9.2 1.3.5m69.7.8c1 1.2.8 1.6-1.5 2.5-3.5 1.3-3.9 1-1.9-1.8 1.8-2.6 1.8-2.6 3.4-.7m-12 2.5c0 3.5-1 3.8-3.4 1.1-2.1-2.3-1.4-4.1 1.5-4.1 1.4 0 1.9.7 1.9 3m-4 3.1c0 1-7.3 1.3-8.3.3s.5-3.5 2.7-4.4c1.6-.6 2.5-.3 3.9 1.2.9 1.1 1.7 2.4 1.7 2.9m-58.9-1.2c-1.6 1-10.2 2.3-10.9 1.6-1.2-1.2 2.4-3.4 6.1-3.7 4.6-.3 7 .8 4.8 2.1m-25.2 1.2c4.9 1.5 5.2 2.6.9 3.4-6.9 1.2-8.2 1-8.6-.8-.5-2.7.6-5 2.2-4.4.8.3 3.2 1.1 5.5 1.8m4.6-1.1c.7 1.2-.2 1.2-3 0-1.9-.8-1.9-.9.2-.9 1.2-.1 2.5.3 2.8.9m67.5-.1c0 1.5-1.7 2.2-3.6 1.4-1.6-.6-1.6-.7.2-1.4 2.7-1.1 3.4-1 3.4 0m30.5-.1c-.6.5-2.9 1.6-5.2 2.5-3.5 1.4-4.3 1.4-4.3.3 0-.7 1.5-1.8 3.3-2.4 4-1.3 7.4-1.5 6.2-.4M244 316c0 3.5-.8 3.6-7.4 1.4-6.5-2.2-5.1-3.3 5.7-4.2 1.3-.2 1.7.5 1.7 2.8m78.2-.6c.8 4.1-.3 4.8-5.5 3.4-2.6-.7-4.7-1.6-4.7-2 0-.9 5.8-3.6 8.1-3.7 1-.1 1.9.9 2.1 2.3m-21.4.2c3.2.9 2.8 1.7-2.5 4.3-5 2.4-6.3 1.9-6.3-2.7 0-1.8.5-2.2 3.3-2.2 1.7 0 4.2.3 5.5.6m-82.2 5c-4.3 3.7-6.1 4.2-7 1.8-1.3-3.3-.5-4.1 4.7-5.1 2.8-.5 5.4-.7 5.7-.5s-1.3 1.9-3.4 3.8m24.1.7c.7.7-2 4.7-3.1 4.7-1.5 0-7.6-6.2-7.6-7.7 0-1 1.2-.8 5.1.7 2.8 1 5.3 2.1 5.6 2.3m-20 3.2c-1.1 3-2.3 5.5-2.7 5.5s-1.8-.9-3.1-2l-2.4-2 4-3.4c5.7-5 6.6-4.6 4.2 1.9m10.8-1.8c4 4.4 4.3 5.8 1.6 7.3-3.9 2-4.5 1.4-5.6-6.4-.4-2.5-.5-4.6-.1-4.6.3 0 2.1 1.7 4.1 3.7m83.1-2.6c4.6 1.2 5.1 1.8 3.4 5-1.5 2.6-2.6 2.4-6-1.4-4.5-4.9-4.3-5.3 2.6-3.6m-88 6.6.7 5.3h-3.1c-1.7 0-3.3-.3-3.5-.8-.8-1.2 3.4-11.5 4.3-10.5.5.4 1.2 3.2 1.6 6m75.4-6.2c0 1.1-5.3 8.5-6 8.5-.9 0-4.4-5-3.8-5.5 2.6-2.2 9.8-4.4 9.8-3m3 6.6c0 4.1-.3 4.9-1.8 4.9-1 0-2.6-.6-3.6-1.3-1.6-1.2-1.6-1.5 1-5.5 1.5-2.3 3.1-3.9 3.6-3.6.4.3.8 2.7.8 5.5m6-2.9c1.6 1.8 3 3.8 3 4.5 0 1.1-5.9 3.7-6.7 2.9s-1.5-7.6-1-9.1c.9-2.1 1.3-1.9 4.7 1.7"/><path d="M433.8 207.7c-4.3.4-4.7.6-3.6 2.3.9 1.4.9 2.2-.1 3.4-.7.8-1 2-.7 2.5.4.5.2 1.3-.4 1.6-.6.4-1.1 2.1-1.1 3.8v7.7c0 2.5.4 6.5.9 8.8.9 4.1.8 4.6-1.9 7.7-2.8 3.1-2.9 3.7-2.9 12.9v9.6l7.3-3.6c5.8-2.9 14-7.9 16.6-10.1.9-.7-10.5-11.6-13.5-12.9-2.9-1.2-3.3-1.9-3.9-7.1-1-9.2 2.1-20.2 7.1-24.8 1.5-1.4 2.3-2.4 1.8-2.3s-3 .3-5.6.5M397.8 252.1c-2 2.1-5.2 6.7-7.1 10.1-3.7 6.7-8.3 18.5-7.5 19.3 1.1 1.1 31.8-9.2 34-11.3.4-.4.1-2.5-.7-4.7s-1.4-6.6-1.5-9.8c0-4.7-.3-5.7-1.7-5.8-1 0-4-.4-6.8-.8-4.9-.9-5.1-.8-8.7 3M417.5 252c-.9 4 .3 12.4 2.1 14.7 1.2 1.6 1.3.6 1.2-8-.1-7.1-.4-9.7-1.4-9.7-.7 0-1.5 1.4-1.9 3M511.5 251c-1 1.1-2.8 2-4.1 2-3 0-3.7 1.3-1.9 3.6.8 1.1 1.4 1.4 1.5.6 0-2.4 3.5-1.2 5.3 1.9 2.2 3.9.8 7.4-4.3 10.3l-3.5 1.9 2.7-2.9 2.7-3-2.1-1.3c-1.9-1.2-2-1.1-1.4.5.4 1.1-.1 2.5-1.4 3.9-2.8 2.9-6 12.5-6 17.8 0 2.5-1.2 7.1-3 11.2-1.6 3.9-3 8.2-3 9.7 0 1.4 1.4 6 3 10.1 1.7 4.2 3 8.5 3 9.6 0 3-3 4.1-11.5 4.1-5.7 0-7.6.3-7.3 1.2.6 1.8 17.2 2.3 21.1.7 2.8-1.2 2.9-1.3 2.2-6.8-.3-3.1-1.3-7.8-2.1-10.4-1.7-5.1-1.3-7.7.9-7.7 2.3 0 4 5.1 4.5 13.5.3 6.6.1 8.3-1.2 9.4-2.2 1.9-2 3.1.7 3.1 1.2 0 3.2-1.1 4.5-2.4 2.5-2.7 2.8-6.3 1.2-14.5-1.2-6.3.2-10.1 3.6-10.1 1.3 0 2.5-.4 2.8-.9s-.3-4.1-1.3-8.1l-1.8-7.2 2.8-2.6c1.7-1.5 2.9-3.5 2.9-5 0-4-2.2-10.5-4.6-13.9-1.9-2.6-2.1-3.2-.9-3.7.8-.3 1.5-1.8 1.5-3.3 0-1.4 1-3.7 2.2-5l2.2-2.3-2.1-2.8c-2.5-3.4-5.4-3.9-7.8-1.2m-4.5 38c0 1-1.4 1.4-4 1-2.2-.3-2.4-.8-1-2.5.9-1.1 1.7-1.2 3.1-.4 1 .5 1.9 1.4 1.9 1.9m3.1 3.1c-.9 2.8 0 8.4 1.4 9.1.8.5 1.2 1.4 1 2.1-.2.6-.6 2.5-.9 4-.4 1.5-1.1 2.5-1.6 2.2s-1 .7-1.2 2.2l-.4 2.8-1.7-3.5c-.9-1.9-2.2-5.5-2.8-8l-1.2-4.5-1 3c-.5 1.6-1.6 3.7-2.3 4.6-.8.8-1.4 2.5-1.4 3.7 0 2.5-2.5 3-3.4.6-1-2.7-.7-4.2 2.5-11.8 2.4-5.9 3.5-7.3 4.8-6.9.9.4 2 1.2 2.4 2 1.2 1.9 2.7 1.6 2.7-.5 0-1 .3-2.2.7-2.6 1.1-1.1 2.8 0 2.4 1.5m-10.3 24.3c.3 1.2-.1 1.7-1 1.4-.7-.3-1.5-1.3-1.6-2.2-.3-1.2.1-1.7 1-1.4.7.3 1.5 1.3 1.6 2.2m10.7 1.4c0 1.8-2 1.5-2.3-.4-.3-1 .1-1.5 1-1.2.7.3 1.3 1 1.3 1.6M202.2 332.2c.3.8 2.7 1.4 5.8 1.6 4.7.3 5.2.1 4-1.2-1.6-2-10.4-2.3-9.8-.4M242.7 331.7c-2 2 1.6 2.3 25.4 2.3 23.1 0 26-.2 24.9-1.5-1-1.3-5.2-1.5-25.5-1.5-13.3 0-24.5.3-24.8.7M513.3 331.7c-2.8 1.1-1.1 2.3 3.2 2.3 3.3 0 4.5-.4 4.5-1.5 0-1.5-4.8-2-7.7-.8M202 338.9v3.1h319v-6l-104.2.4c-57.4.3-107 .5-110.3.5-12.7-.2-72.3-.1-78.5.1-3.6.1-10.9-.2-16.2-.5l-9.8-.7zM515 355.7c0 .5 1.3 2.3 2.8 4.1l2.7 3.3 12.3-.3 12.2-.3-3.1-3.8-3-3.7h-12c-6.5 0-11.9.3-11.9.7M605.3 366.9c-8.2 2.8-12.7 6.3-15.7 12.2-5.9 11.9-1.2 24.2 11.4 29.8 2.5 1.1 9.5 2.9 15.5 4.1 14.6 2.9 21.1 5.8 23 10.4 4.5 10.8-2.1 19.2-16 20.4-13.2 1-22.8-4.9-25.6-15.9l-1.3-4.9H585v30h6c5.8 0 6-.1 6-2.6 0-1.4.3-2.4.8-2.2 12 6.1 14.6 7 21.6 7.5 13.7 1 26.6-5.1 31.8-15.1 1.7-3.2 2.2-5.8 2.2-11.6-.1-16.4-8.4-23.3-33.2-27.5-17.6-2.9-23.8-9.1-18.3-18.1 5.8-9.4 25.5-8.1 32.5 2.2 1.4 2.1 2.6 4.4 2.6 5.1 0 .9 1.8 1.3 6 1.3h6v-25.1l-5.7.3c-5.7.3-5.8.4-5.5 3 .4 3.3-.8 3.6-3.3.8-2.4-2.6-13.4-6-19.4-6-2.5.1-6.9.9-9.8 1.9M82.4 368.4c-.3.7-.4 3.5-.2 6.2l.3 4.9 5.3.3 5.2.3V441H82v12h35v-12h-11.1l.3-14.3.3-14.2h38l.3 14.2.3 14.3H134v12h35.1l-.3-5.8-.3-5.7-5.2-.3-5.3-.3v-60.8l5.3-.3 5.2-.3v-12l-17.3-.3-17.3-.2.3 6.2.3 6.3 5.3.3 5.2.3V400h-39v-20h11v-13h-17c-13.6 0-17.2.3-17.6 1.4M185 373.5v6.5h11v61h-11v12h71v-28h-13v16h-34.1l.3-14.3.3-14.2 14.5-.5 14.5-.5v-11l-14.7-.3-14.8-.3V380h33.9l.6 3.3c.4 1.8.6 3.7.5 4.2-.6 3 .2 3.5 6 3.5h6v-24h-71zM275 373.4v6.6h11v61h-11v12h34v-11.9l-5.2-.3-5.3-.3-.3-13.3-.3-13.2h13.6c21.4 0 22.5 1.2 22.5 24.5V453h24v-12h-10.7l-.5-10.8c-.5-11.8-2.2-16.5-7.5-19.9l-2.4-1.6 3.2-1.5c1.7-.9 4.3-3.3 5.8-5.6 2.3-3.5 2.6-5 2.6-12.1 0-7.3-.3-8.6-2.8-12.2-1.6-2.3-5.1-5.3-8-6.9l-5.2-2.9-28.7-.3-28.8-.3zm59.1 9.5c5.2 5.2 3.6 14.1-3.1 17.6-2.2 1.1-6.6 1.5-18 1.5h-15v-22h33.2zM372.2 373.2l.3 6.3 5.3.3 5.2.3V441h-11v12h35v-12h-11v-29.3c.1-32.4-.2-31.7 6-16.5 1.6 4 6.5 15.8 10.9 26.3l7.9 19 3.5.3 3.4.3 6-14.3c3.4-7.9 8.7-20.6 11.8-28.3 3.2-7.7 6.2-14.4 6.7-15 .4-.5.8 12.2.8 28.3V441h-11v12h35v-11.9l-5.7-.3-5.8-.3-.3-30.3-.2-30.2h12v-13.1l-15.7.3-15.7.3-6.9 16.5c-12.4 30.1-14.1 33.9-14.4 33.6-.2-.1-5-11.5-10.6-25.2l-10.4-24.9-15.7-.3-15.7-.3zM493.2 373.2l.3 6.3 5.8.3 5.7.3V441h-12v12h71v-28.1l-6.1.3-6.2.3-.1 7.5-.1 7.5h-34l-.3-10c-.2-5.5 0-11.9.3-14.3l.6-4.2H547v-12h-30.1l.2-10 .1-10H552v11h12v-24h-71.1zM309.5 496.2c-3.2 7.3-8 18.1-10.7 24-2.6 5.9-4.8 11.2-4.8 11.8 0 .7 1.5 1 3.7.8 3.6-.3 3.8-.5 6.6-7.6l2.9-7.2h10.4c11.5 0 10.6-.5 14.5 8.5 2.4 5.6 2.8 6 6.2 6.3 2.2.2 3.7-.1 3.7-.8 0-.6-3.6-8.8-7.9-18.3s-9.3-20.2-10.9-24c-2.6-5.6-3.5-6.7-5.5-6.7-2.1 0-3.1 1.5-8.2 13.2m12 5.8c2.1 5 3.6 9.3 3.3 9.6s-3.7.4-7.5.2l-7-.3 3.5-9.3c2-5 3.6-9.2 3.7-9.2s1.9 4.1 4 9M457.9 484c-7.1 2.1-10.7 7.7-9.5 14.5.7 3.7 5.3 8.3 11.6 11.5 8.5 4.3 12.7 9.9 10.2 13.6-3.1 4.7-14.8 4.2-19.1-.9-2.2-2.7-3.1-2-3.1 2.3 0 3.6.4 4.1 3.8 5.9 3.6 1.8 8.2 2.5 15.1 2.2 2.5-.1 4.4-1.1 7.3-4.1 3.9-3.9 4-4.2 3.6-9.5-.6-6.9-3.2-9.9-13-15-8.1-4.3-10.6-7.4-9-11.1 2.3-4.9 10.1-5.4 17-1.2l3.2 2v-4c0-3.7-.3-4.1-4-5.6-4.3-1.7-9.8-1.9-14.1-.6M254.2 508.2l.3 24.3h7l.3-10.3.3-10.2h3.9c15.8 0 23.9-8.1 19.5-19.6-2.6-6.8-6.5-8.4-20.5-8.4h-11zm21.1-17.1c1.2.7 2.5 1.7 2.9 2.3 1.5 2.2.8 7-1.4 9.3-1.8 1.9-3.2 2.3-8.5 2.3H262v-15h5.6c3 0 6.5.5 7.7 1.1M359 508.5V533h7v-10.5c0-11.3-.1-11.1 5.5-10.5 2.9.3 9.5 7 14 14.5 3.9 6.4 4.1 6.5 8.3 6.5 3.2 0 4.1-.3 3.6-1.3-3.2-5.3-12.5-18.6-14.2-20.1l-2.1-1.9 2.6-2c2.7-2.2 5.3-7.3 5.3-10.8 0-1.1-.8-3.7-1.7-5.6-2.5-5.3-7.6-7.3-19-7.3H359zm20-16.5c1.2 1.2 2 3.3 2 5.4 0 4.8-3.7 7.6-10.1 7.6H366v-15h5.5c4.2 0 6 .5 7.5 2M418 508.5V533h7v-49h-7z"/></svg>
+    </div>
+
+    <p class="hero-wordmark">Paris · Since 1837</p>
+
+    <h1 class="hero-title">
+      The Art of<br>
+      <em>Saying No.</em>
+    </h1>
+    <p class="hero-subtitle">
+      How a harness workshop built a market cap that briefly surpassed LVMH — by refusing to sell, refusing to advertise, and refusing to be ordinary.
+    </p>
+
+    <div class="hero-divider"></div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">€15.2B</span>
+        <span class="hero-stat-label">Revenue 2024</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">40.5%</span>
+        <span class="hero-stat-label">Operating Margin</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">6</span>
+        <span class="hero-stat-label">Generations · Same Family</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">187</span>
+        <span class="hero-stat-label">Years of Craft</span>
+      </div>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Explore</span>
+      <div class="scroll-line"></div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ── ORIGIN ── -->
+<section class="origin">
+  <div class="section-inner">
+    <div class="origin-grid">
+      <div class="reveal">
+        <span class="section-tag">The Beginning</span>
+        <h2 class="section-title">A German immigrant,<br><em>a needle, and a horse.</em></h2>
+        <p class="body-text">
+          Thierry Hermès was born in Krefeld, Germany in 1801 — a city known for its silk. He arrived in Paris as a craftsman with a single skill: making the finest harnesses in France for the nobility's horses.
+        </p>
+        <p class="body-text">
+          In 1837, he opened a small workshop near La Madeleine. His clients were Napoleon III and the crowned heads of Europe — not because of marketing, but because his stitching was simply better than anyone else's. By the time his grandson Émile-Maurice inherited the house, the Tsar of Russia was placing private orders.
+        </p>
+        <p class="body-text">
+          That obsession with craft, passed from father to son to grandson through six generations, is still the engine of a house that briefly surpassed LVMH as the world's most valuable luxury company in 2025.
+        </p>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <div class="origin-card">
+          <div class="origin-year">1837</div>
+          <p class="origin-fact">"The first client is the horse. The second is the rider."</p>
+          <span class="origin-note">— Jean-Louis Dumas, CEO 1978–2006</span>
+        </div>
+        <div style="margin-top: 16px; background: var(--cream-dark); padding: 28px 32px; border-left: 3px solid var(--gold);">
+          <p class="body-text" style="font-size: 16px; margin: 0; color: var(--brown-mid);">
+            Thierry died in 1878. His son Charles-Émile inherited not a brand, but a discipline. The obsession passed whole — stitch by stitch, generation by generation — through six heirs without ever being sold to a conglomerate.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TIMELINE ── -->
+<section class="timeline-section">
+  <div class="section-inner">
+    <div class="timeline-header reveal">
+      <span class="section-tag" style="color: var(--gold);">187 Years in 8 Moments</span>
+      <h2 class="section-title">From saddles<br><em>to surpassing LVMH.</em></h2>
+    </div>
+    <div class="timeline reveal reveal-delay-1">
+      <div class="timeline-item">
+        <span class="timeline-year">1837</span>
+        <div class="timeline-text">
+          <h4>The Harness Workshop</h4>
+          <p>Thierry Hermès opens a workshop in Paris serving European nobility. His saddle-stitch technique — two needles, two threads in opposite tension — remains unchanged to this day.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">1880</span>
+        <div class="timeline-text">
+          <h4>24 Rue du Faubourg Saint-Honoré</h4>
+          <p>Charles-Émile Hermès moves the house to its permanent address, where it remains today. The first retail store opens alongside the workshop.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">1918</span>
+        <div class="timeline-text">
+          <h4>The First Zipper in France</h4>
+          <p>Émile-Maurice Hermès secures exclusive zipper rights for France after crafting a leather golf jacket for the Prince of Wales. The zipper becomes known as "la fermeture Hermès" throughout the country.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">1937</span>
+        <div class="timeline-text">
+          <h4>The Silk Carré is Born</h4>
+          <p>The iconic square silk scarf debuts — exactly 100 years after the house's founding. Each scarf takes 18 months and 250 silkworm cocoons to produce. Up to 750 hours just to engrave the printing screens — one per color. The average scarf carries 27 distinct shades.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">1942</span>
+        <div class="timeline-text">
+          <h4>The Accidental Orange</h4>
+          <p>WWII material shortages force Hermès to accept the only available box color: bright orange — "the color nobody wanted." It accidentally becomes the most recognized packaging in luxury history. The dark brown Bolduc ribbon is added in 1949, completing the look.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">1956</span>
+        <div class="timeline-text">
+          <h4>Grace Kelly & The Bag</h4>
+          <p>A Life Magazine photo of Princess Grace Kelly using a Hermès Sac à Dépêches to shield her pregnancy causes the bag to sell out worldwide overnight. Hermès renames it the Kelly.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">1984</span>
+        <div class="timeline-text">
+          <h4>The Birkin is Born on a Flight</h4>
+          <p>CEO Jean-Louis Dumas sits next to actress Jane Birkin on a Paris–London flight. Her basket spills. By landing, he has sketched the world's most valuable handbag on an airplane sickness bag. The finished prototype is delivered to Jane in 1985 — a detail the mythology often swallows.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <span class="timeline-year">2024</span>
+        <div class="timeline-text">
+          <h4>€15.2 Billion. The Luxury Market Goes Quiet.</h4>
+          <p>While LVMH and Kering struggle through a luxury slowdown, Hermès grows 15% and briefly overtakes LVMH in market cap — becoming the most valuable luxury house in history. Operating margin: 40.5%. The same as Apple's. A craft atelier. Performing like a tech company.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ORANGE ── -->
+<section class="orange-section">
+  <div class="section-inner">
+    <div class="orange-grid">
+      <div class="reveal">
+        <span class="section-tag">The Color That Wasn't Chosen</span>
+        <h2 class="section-title">Iconic<br><em>by accident.</em></h2>
+        <p class="body-text">
+          In 1942, Nazi-occupied Paris was rationing everything — including cardboard. Hermès ran out of its signature cream-colored boxes. Their supplier offered the only color no one else wanted: a vivid orange.
+        </p>
+        <p class="body-text">
+          Émile-Maurice Hermès accepted it out of necessity. The result was "iconic by accident" — the brand's own words. Seven years later, in 1949, he added the dark brown Bolduc ribbon that completed the look the world now recognizes instantly.
+        </p>
+        <div class="orange-facts">
+          <div class="orange-fact-item">
+            <div class="orange-fact-dot"></div>
+            <p class="orange-fact-text">188 different sizes of the orange box exist — one for every product category</p>
+          </div>
+          <div class="orange-fact-item">
+            <div class="orange-fact-dot"></div>
+            <p class="orange-fact-text">The exact shade has no Pantone equivalent — it exists only as "Hermès Orange"</p>
+          </div>
+          <div class="orange-fact-item">
+            <div class="orange-fact-dot"></div>
+            <p class="orange-fact-text">The EU refused to let Hermès trademark the color in 2005, calling it "too common." The box remains more recognizable than most logos</p>
+          </div>
+          <div class="orange-fact-item">
+            <div class="orange-fact-dot"></div>
+            <p class="orange-fact-text">Keeping the original box increases a bag's resale value by thousands of dollars</p>
+          </div>
+        </div>
+      </div>
+      <div class="orange-box-visual reveal reveal-delay-2">
+        <div class="box-3d">
+          <div class="box-ribbon"></div>
+          <div class="box-h">H</div>
+          <span class="box-logo-text">Hermès</span>
+          <span class="box-logo-text" style="font-size: 8px; letter-spacing: 8px; opacity: 0.6;">Paris</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOGO ── -->
+<section class="logo-section">
+  <div class="section-inner">
+    <div class="logo-grid">
+      <div class="logo-visual reveal">
+        <div class="logo-frame">
+          <svg xmlns="http://www.w3.org/2000/svg" width="981.333" height="981.333" viewBox="0 0 736 736"><path d="M449.3 203.7c-1.8 1.2-2.9 1.3-5.3.5-3-1.1-3.9-.5-2.1 1.3.6.6-.1 2.5-2 5-1.6 2.2-3.1 4.7-3.5 5.5-.3.8-1 2.4-1.4 3.5-1.4 3.1-2.8 13.3-2.2 16 .3 1.6 1.1 2.5 2.3 2.5.9 0 4.6 2.3 8.1 5.1 6.4 5.2 13.6 9.2 15 8.3s.9-10.2-.8-14.4c-1.6-3.9-1.6-4 .7-5.9 1.3-1.1 2.8-1.6 3.2-1.2 1.1 1.1 1.4 19.9.4 23.3-.9 3.3-4.3 4.5-8.6 3-2.4-.9-3.2-.7-4.6.7-.8 1-6.6 4.4-12.8 7.6s-11.4 5.9-11.5 6.1c-.9.7 1.2 6.7 3.8 10.6 3.3 4.9 7 7.4 14.9 9.8l5.6 1.7 3.3 8.4c1.8 4.6 4.4 10.6 5.8 13.3 1.3 2.8 2.4 6.4 2.4 8.2s.6 3.4 1.4 3.7c.9.4 1.2 1.4.9 2.6-.5 2.1-1 2.1-37.4 2.1-34.5 0-36.9-.1-36.7-1.8.1-.9 0-4.2 0-7.3-.2-5.1-.6-6-4.6-10.2-5.6-6-6.3-9.2-2.7-12.6 1.5-1.4 4.6-4.3 6.9-6.5 2.6-2.3 4.2-4.8 4.2-6.1s.7-2.6 1.6-2.9c3-1.2 9.4-.6 14.1 1.3 5.3 2.1 7.4 2.4 14.3 2.2 7.2-.2 8-1.3 3.9-5.8-1.9-2.1-4.1-4.9-5-6.3l-1.6-2.5-9.4 3.7c-20.8 8-51 16.8-57.9 16.8-1.9 0-10.8 1.8-19.7 4.1-11.3 2.8-16.8 3.7-17.9 3.1-1.4-.8-1-1.2 2.2-2.2 7.9-2.6 11.8-6.9 17-18.7 1.7-4.1 3.4-7.6 3.7-7.9.2-.3 1.4 1.4 2.6 3.8 2.7 5.4 6.1 7.9 11.7 8.6 3.1.3 4.5 1 4.9 2.3.7 2.1 2.2 2.4 5.8 1 1.9-.8 2.3-1.5 1.9-3.9-.3-2.3.1-3.3 1.7-4.1 2-1.1 2.1-.9 2.1 2.9 0 3.5.3 4.1 1.8 3.6.9-.2 3.5-1 5.8-1.6 3.7-1.1 4.2-1.6 5.3-5.8 1.8-6.8 7.7-17.9 13.2-24.9l4.8-6.2-5.5-1.2c-7.7-1.7-14.9-.1-23.9 5.3-8.9 5.5-12.2 11.3-13.2 23l-.6 7.8h-3.8c-4.9 0-9.2-3.6-11.5-9.6-1.7-4.4-1.7-4.7.3-8.8 1.2-2.4 4.4-7 7.2-10.4 6.3-7.5 5.3-8.1-1.7-1.1-3.9 3.9-6.8 8.5-11.8 18.5-5.1 10.3-7.6 14.3-11 17.3-6.6 5.8-15.8 7.6-23.2 4.5-5.3-2.2-8.7-5.7-15.2-15.9-10.8-16.8-13.4-18.2-36.4-20.1l-16-1.2-2.6-3.1c-2.6-3.2-4.6-3.9-5.2-2-.3.9-1 .9-2.6 0-3.1-1.7-6.2-.5-6.2 2.3 0 3.4 3.5 7.3 9.1 10.1l4.9 2.5v6c0 7.9-1.2 10.5-5.9 12.9-4.8 2.5-7.1 5.6-7.1 9.6 0 4.2-6.1 10-12.3 11.6-5.6 1.4-6 2.4-1.2 3.3 3.4.7 3.5.8 3.5 5.6 0 6.2 1.3 9.7 5.3 13.8 4.6 4.8 8.4 6.5 14.7 6.5 9.9 0 17.5-5.8 20-15.2.6-2.4.9-5.9.5-7.8-.6-3.1-.4-3.4 2.5-3.9 4.7-1 4.4-2-.8-3.4-2.6-.8-6.4-2.8-8.4-4.6-4.5-4.1-10.5-5.8-16.9-4.9-4.7.7-4.9.6-4.9-1.7 0-3.1.9-4.2 4.9-6.3 4.4-2.2 10.3-1.7 22.6 2.1 7.7 2.3 11.1 2.8 23.5 3l14.4.3 2.3 3.8 2.3 3.8 6.7-.3c6.8-.2 6.8-.2 3.8 1.4-1.6.9-4.3 2.8-6 4.3-1.6 1.5-4.9 3.6-7.2 4.6-2.4 1-4.3 2.2-4.3 2.6s1.6 1.1 3.5 1.5c3.1.5 3.5 1 3.5 3.5 0 3.5 2.4 9.6 4.8 12.2 7.5 8.3 22.6 7.1 28.8-2.2 2.8-4.3 3.7-10.9 2.1-16.2-.7-2.1-.4-2.7 1.8-3.7 3.7-1.7 5.9-1.5 8 .8 3.5 3.9 8.3 2.3 9.1-3.1 1-6.3 5.5-9.2 17.4-11.3l3.4-.6-2.7 2.8c-1.5 1.5-2.7 3.9-2.7 5.2 0 1.2-1 7-2.2 12.6-2 9.7-2 10.5-.5 12.2 2.3 2.6 2.2 5.2-.3 5.2-1.1 0-2.1-.3-2.1-.8-.9-5.5-.4-12.8 1.2-19 2-7.8 2.5-14.3 1.1-12.7-1.5 1.6-6.3 23.8-5.4 24.4.5.3.7 2.3.4 4.3l-.4 3.7-14.6.3c-10.5.2-14.7.6-15 1.5-.3 1 4.3 1.3 20.7 1.3 16.6 0 21.1-.3 21.1-1.3 0-.7-.4-1.7-.9-2.2-3.3-3.5-3.1-14.5.5-22 2.2-4.8 13.9-16.5 20.7-20.9 4.7-3.1 2.9-.3-3.4 5.4-9.4 8.4-9.9 8.9-9.9 10.5 0 .8 2.5 3.3 5.6 5.6 4 2.9 6.1 5.4 7.5 8.7 1.8 4.2 1.9 4.8.5 5.8-2 1.4-2 2.8-.1 4.4 2.9 2.4 1.4 3-8.1 3-7.2 0-9.5.3-9.2 1.2.6 1.8 111.8 2.4 111.8.7 0-.6-1.8-2.8-3.9-4.8-4.5-4-6.1-7.5-6.1-12.9-.1-2-1-6.2-2.1-9.2-3-8.4-3.5-18.6-1.4-25.9l1.9-6 5-1c2.8-.6 7.9-1.5 11.4-2.2 6.7-1.3 8.6-3 2.3-2.2-4.4.6-10-2.2-17.3-8.6l-4.3-3.8-.1-14.4c-.1-14 0-14.5 2.4-17.1 1.3-1.4 3.1-2.4 3.8-2.1 1.7.6 1.9-1.3.2-2-1-.4-1-.8.1-1.5.7-.5 1-1.5.7-2.1-.5-.7.1-1.1 1.3-1.1 2.3 0 2.8-2.2.9-3.7-.7-.5-3.4-1.7-6-2.7s-5.6-2.8-6.5-4c-2.3-2.9-8-3.9-11-1.9m5.7 3.3c0 .5-.4 1-1 1-.5 0-1-.5-1-1 0-.6.5-1 1-1 .6 0 1 .4 1 1m14 8.4c0 1.1-1.9 1.5-2.5.6-.3-.5.1-1 .9-1 .9 0 1.6.2 1.6.4m-2.3 4.2c.3 1-.4 2.6-2 4.1l-2.5 2.5-.7-3.2c-.5-2.3-.3-3.5.6-4.1 2.1-1.3 3.9-1.1 4.6.7m-6.5 3.9c.6 2.5.3 3.4-1.7 5.5-3.1 3.1-4.5 1.9-5.2-4.4l-.6-4.6 3.4.3c2.7.2 3.4.8 4.1 3.2M226.1 254c5.6 2.9 7.2 3.2 21.4 4 15.8.9 22.2 2.5 25.4 6.3 1.2 1.6 1 1.5-2.5 0-3.3-1.5-6.6-1.7-21.6-1.5-19.3.3-22.6-.3-28-5.5-2.8-2.6-3.8-6.3-1.8-6.3.6 0 3.8 1.4 7.1 3m143.7 3.7c-1.7 2.8-2.2 5.3-2.3 11.1 0 5.9-.4 7.6-1.8 8.3-1.9 1.1-2 .8-1.7-7.6.2-5.3 2.1-10.8 4.7-13.7 2.7-3 3.3-2 1.1 1.9m102 7.7c6.9 4.3 6.8 5-.9 6.1l-4.6.7-.6-3.4c-.3-1.8-.9-4.4-1.3-5.7-.8-2.8-.7-2.8 7.4 2.3m-229.9 19.4c-.4.2-1.7-.1-2.8-.7s-3.6-1.1-5.5-1.1c-4.2 0-4 .3-2.2-4.2l1.5-3.5 4.9 4.6c2.8 2.5 4.6 4.7 4.1 4.9m200 2.3c1.8.4 4.8.5 6.5.2 4-.6 7.1 2.1 3.6 3.2-3.1 1-8.9-.3-14-3.1-2.5-1.4-3.4-2.2-2-1.8s4 1.1 5.9 1.5m15.5 13.1c1.6 4.6 4.1 11.3 5.7 15s3.2 8.1 3.6 9.8c.3 1.8 1.2 3.4 1.9 3.7 2.1.8 1.7 2.3-.6 2.3-1.1 0-2.3-.8-2.6-1.8-.3-.9-1.1-3.1-1.8-4.7-.7-1.7-1.9-4.6-2.5-6.5-.7-1.9-2.8-7.6-4.6-12.5-4.8-13.2-4.8-13.5-3.2-13.5.8 0 2.4 3.2 4.1 8.2m-225.5-1.7c.2.2.1 1-.2 1.8-.3.9-1.6 1.2-3.6.9-2.9-.4-4-2-2.4-3.6.7-.6 5.3 0 6.2.9m110.9 2.2c-.9 2.4-2 3.3-4.6 3.8-3.1.6-9.2-1.1-9.2-2.6 0-.5 7.6-2.9 13.5-4.4 1.5-.4 1.6-.1.3 3.2m-106.6 1.1c-2.7.4-3.7-.2-2.7-1.7.4-.8 1.3-.7 2.8.1l2.2 1.3zM221 301c0 .5-.9 1-2.1 1-1.1 0-1.7-.5-1.4-1 .3-.6 1.3-1 2.1-1s1.4.4 1.4 1m85 1.9c0 .9-6 2.4-6.8 1.6-.5-.5 3.6-2.3 5.6-2.4.6-.1 1.2.3 1.2.8m-81.2 2.8c.4 2.7-1.4 3-4 .6-2.6-2.3-2.2-3.5 1-3.1 1.9.2 2.8.9 3 2.5m5.2-1.5c0 2.2-1.7 4.1-2.9 3.4-1.9-1.2-1.3-4.6.9-4.6 1.1 0 2 .6 2 1.2m8-.5c0 1.4-3.4 4.3-5.2 4.3-1.9 0-2.2-.8-1.2-3.4.6-1.5 6.4-2.4 6.4-.9m-19.5 2.3c1.8 2 1.7 2-2.3 2-4.5 0-4.5 0-3.6-2.4.8-2.2 3.7-2 5.9.4m95.5-1.5c0 .4-.7 1.9-1.5 3.5-1.8 3.4-4.5 4-4.5 1 0-1.1 0-2.3-.1-2.8 0-.4 1-1 2.3-1.4 3.1-.8 3.8-.9 3.8-.3m11.7 1.1c-2.7 1.5-4.7 1.2-4.7-.7 0-.5 1.7-.9 3.8-.9l3.7.1zm-117.2.4c-.3.5-1.6 1-2.8.9-2-.1-2-.2.3-.9 1.4-.4 2.6-.8 2.8-.9s0 .3-.3.9m33.5-.1c0 .9-2.4 2.1-4.2 2.1-.6 0-.6-.6.2-1.5 1.4-1.6 4-2 4-.6m6.3-.2c-.7.2-1.9.2-2.5 0-.7-.3-.2-.5 1.2-.5s1.9.2 1.3.5m69.7.8c1 1.2.8 1.6-1.5 2.5-3.5 1.3-3.9 1-1.9-1.8 1.8-2.6 1.8-2.6 3.4-.7m-12 2.5c0 3.5-1 3.8-3.4 1.1-2.1-2.3-1.4-4.1 1.5-4.1 1.4 0 1.9.7 1.9 3m-4 3.1c0 1-7.3 1.3-8.3.3s.5-3.5 2.7-4.4c1.6-.6 2.5-.3 3.9 1.2.9 1.1 1.7 2.4 1.7 2.9m-58.9-1.2c-1.6 1-10.2 2.3-10.9 1.6-1.2-1.2 2.4-3.4 6.1-3.7 4.6-.3 7 .8 4.8 2.1m-25.2 1.2c4.9 1.5 5.2 2.6.9 3.4-6.9 1.2-8.2 1-8.6-.8-.5-2.7.6-5 2.2-4.4.8.3 3.2 1.1 5.5 1.8m4.6-1.1c.7 1.2-.2 1.2-3 0-1.9-.8-1.9-.9.2-.9 1.2-.1 2.5.3 2.8.9m67.5-.1c0 1.5-1.7 2.2-3.6 1.4-1.6-.6-1.6-.7.2-1.4 2.7-1.1 3.4-1 3.4 0m30.5-.1c-.6.5-2.9 1.6-5.2 2.5-3.5 1.4-4.3 1.4-4.3.3 0-.7 1.5-1.8 3.3-2.4 4-1.3 7.4-1.5 6.2-.4M244 316c0 3.5-.8 3.6-7.4 1.4-6.5-2.2-5.1-3.3 5.7-4.2 1.3-.2 1.7.5 1.7 2.8m78.2-.6c.8 4.1-.3 4.8-5.5 3.4-2.6-.7-4.7-1.6-4.7-2 0-.9 5.8-3.6 8.1-3.7 1-.1 1.9.9 2.1 2.3m-21.4.2c3.2.9 2.8 1.7-2.5 4.3-5 2.4-6.3 1.9-6.3-2.7 0-1.8.5-2.2 3.3-2.2 1.7 0 4.2.3 5.5.6m-82.2 5c-4.3 3.7-6.1 4.2-7 1.8-1.3-3.3-.5-4.1 4.7-5.1 2.8-.5 5.4-.7 5.7-.5s-1.3 1.9-3.4 3.8m24.1.7c.7.7-2 4.7-3.1 4.7-1.5 0-7.6-6.2-7.6-7.7 0-1 1.2-.8 5.1.7 2.8 1 5.3 2.1 5.6 2.3m-20 3.2c-1.1 3-2.3 5.5-2.7 5.5s-1.8-.9-3.1-2l-2.4-2 4-3.4c5.7-5 6.6-4.6 4.2 1.9m10.8-1.8c4 4.4 4.3 5.8 1.6 7.3-3.9 2-4.5 1.4-5.6-6.4-.4-2.5-.5-4.6-.1-4.6.3 0 2.1 1.7 4.1 3.7m83.1-2.6c4.6 1.2 5.1 1.8 3.4 5-1.5 2.6-2.6 2.4-6-1.4-4.5-4.9-4.3-5.3 2.6-3.6m-88 6.6.7 5.3h-3.1c-1.7 0-3.3-.3-3.5-.8-.8-1.2 3.4-11.5 4.3-10.5.5.4 1.2 3.2 1.6 6m75.4-6.2c0 1.1-5.3 8.5-6 8.5-.9 0-4.4-5-3.8-5.5 2.6-2.2 9.8-4.4 9.8-3m3 6.6c0 4.1-.3 4.9-1.8 4.9-1 0-2.6-.6-3.6-1.3-1.6-1.2-1.6-1.5 1-5.5 1.5-2.3 3.1-3.9 3.6-3.6.4.3.8 2.7.8 5.5m6-2.9c1.6 1.8 3 3.8 3 4.5 0 1.1-5.9 3.7-6.7 2.9s-1.5-7.6-1-9.1c.9-2.1 1.3-1.9 4.7 1.7"/><path d="M433.8 207.7c-4.3.4-4.7.6-3.6 2.3.9 1.4.9 2.2-.1 3.4-.7.8-1 2-.7 2.5.4.5.2 1.3-.4 1.6-.6.4-1.1 2.1-1.1 3.8v7.7c0 2.5.4 6.5.9 8.8.9 4.1.8 4.6-1.9 7.7-2.8 3.1-2.9 3.7-2.9 12.9v9.6l7.3-3.6c5.8-2.9 14-7.9 16.6-10.1.9-.7-10.5-11.6-13.5-12.9-2.9-1.2-3.3-1.9-3.9-7.1-1-9.2 2.1-20.2 7.1-24.8 1.5-1.4 2.3-2.4 1.8-2.3s-3 .3-5.6.5M397.8 252.1c-2 2.1-5.2 6.7-7.1 10.1-3.7 6.7-8.3 18.5-7.5 19.3 1.1 1.1 31.8-9.2 34-11.3.4-.4.1-2.5-.7-4.7s-1.4-6.6-1.5-9.8c0-4.7-.3-5.7-1.7-5.8-1 0-4-.4-6.8-.8-4.9-.9-5.1-.8-8.7 3M417.5 252c-.9 4 .3 12.4 2.1 14.7 1.2 1.6 1.3.6 1.2-8-.1-7.1-.4-9.7-1.4-9.7-.7 0-1.5 1.4-1.9 3M511.5 251c-1 1.1-2.8 2-4.1 2-3 0-3.7 1.3-1.9 3.6.8 1.1 1.4 1.4 1.5.6 0-2.4 3.5-1.2 5.3 1.9 2.2 3.9.8 7.4-4.3 10.3l-3.5 1.9 2.7-2.9 2.7-3-2.1-1.3c-1.9-1.2-2-1.1-1.4.5.4 1.1-.1 2.5-1.4 3.9-2.8 2.9-6 12.5-6 17.8 0 2.5-1.2 7.1-3 11.2-1.6 3.9-3 8.2-3 9.7 0 1.4 1.4 6 3 10.1 1.7 4.2 3 8.5 3 9.6 0 3-3 4.1-11.5 4.1-5.7 0-7.6.3-7.3 1.2.6 1.8 17.2 2.3 21.1.7 2.8-1.2 2.9-1.3 2.2-6.8-.3-3.1-1.3-7.8-2.1-10.4-1.7-5.1-1.3-7.7.9-7.7 2.3 0 4 5.1 4.5 13.5.3 6.6.1 8.3-1.2 9.4-2.2 1.9-2 3.1.7 3.1 1.2 0 3.2-1.1 4.5-2.4 2.5-2.7 2.8-6.3 1.2-14.5-1.2-6.3.2-10.1 3.6-10.1 1.3 0 2.5-.4 2.8-.9s-.3-4.1-1.3-8.1l-1.8-7.2 2.8-2.6c1.7-1.5 2.9-3.5 2.9-5 0-4-2.2-10.5-4.6-13.9-1.9-2.6-2.1-3.2-.9-3.7.8-.3 1.5-1.8 1.5-3.3 0-1.4 1-3.7 2.2-5l2.2-2.3-2.1-2.8c-2.5-3.4-5.4-3.9-7.8-1.2m-4.5 38c0 1-1.4 1.4-4 1-2.2-.3-2.4-.8-1-2.5.9-1.1 1.7-1.2 3.1-.4 1 .5 1.9 1.4 1.9 1.9m3.1 3.1c-.9 2.8 0 8.4 1.4 9.1.8.5 1.2 1.4 1 2.1-.2.6-.6 2.5-.9 4-.4 1.5-1.1 2.5-1.6 2.2s-1 .7-1.2 2.2l-.4 2.8-1.7-3.5c-.9-1.9-2.2-5.5-2.8-8l-1.2-4.5-1 3c-.5 1.6-1.6 3.7-2.3 4.6-.8.8-1.4 2.5-1.4 3.7 0 2.5-2.5 3-3.4.6-1-2.7-.7-4.2 2.5-11.8 2.4-5.9 3.5-7.3 4.8-6.9.9.4 2 1.2 2.4 2 1.2 1.9 2.7 1.6 2.7-.5 0-1 .3-2.2.7-2.6 1.1-1.1 2.8 0 2.4 1.5m-10.3 24.3c.3 1.2-.1 1.7-1 1.4-.7-.3-1.5-1.3-1.6-2.2-.3-1.2.1-1.7 1-1.4.7.3 1.5 1.3 1.6 2.2m10.7 1.4c0 1.8-2 1.5-2.3-.4-.3-1 .1-1.5 1-1.2.7.3 1.3 1 1.3 1.6M202.2 332.2c.3.8 2.7 1.4 5.8 1.6 4.7.3 5.2.1 4-1.2-1.6-2-10.4-2.3-9.8-.4M242.7 331.7c-2 2 1.6 2.3 25.4 2.3 23.1 0 26-.2 24.9-1.5-1-1.3-5.2-1.5-25.5-1.5-13.3 0-24.5.3-24.8.7M513.3 331.7c-2.8 1.1-1.1 2.3 3.2 2.3 3.3 0 4.5-.4 4.5-1.5 0-1.5-4.8-2-7.7-.8M202 338.9v3.1h319v-6l-104.2.4c-57.4.3-107 .5-110.3.5-12.7-.2-72.3-.1-78.5.1-3.6.1-10.9-.2-16.2-.5l-9.8-.7zM515 355.7c0 .5 1.3 2.3 2.8 4.1l2.7 3.3 12.3-.3 12.2-.3-3.1-3.8-3-3.7h-12c-6.5 0-11.9.3-11.9.7M605.3 366.9c-8.2 2.8-12.7 6.3-15.7 12.2-5.9 11.9-1.2 24.2 11.4 29.8 2.5 1.1 9.5 2.9 15.5 4.1 14.6 2.9 21.1 5.8 23 10.4 4.5 10.8-2.1 19.2-16 20.4-13.2 1-22.8-4.9-25.6-15.9l-1.3-4.9H585v30h6c5.8 0 6-.1 6-2.6 0-1.4.3-2.4.8-2.2 12 6.1 14.6 7 21.6 7.5 13.7 1 26.6-5.1 31.8-15.1 1.7-3.2 2.2-5.8 2.2-11.6-.1-16.4-8.4-23.3-33.2-27.5-17.6-2.9-23.8-9.1-18.3-18.1 5.8-9.4 25.5-8.1 32.5 2.2 1.4 2.1 2.6 4.4 2.6 5.1 0 .9 1.8 1.3 6 1.3h6v-25.1l-5.7.3c-5.7.3-5.8.4-5.5 3 .4 3.3-.8 3.6-3.3.8-2.4-2.6-13.4-6-19.4-6-2.5.1-6.9.9-9.8 1.9M82.4 368.4c-.3.7-.4 3.5-.2 6.2l.3 4.9 5.3.3 5.2.3V441H82v12h35v-12h-11.1l.3-14.3.3-14.2h38l.3 14.2.3 14.3H134v12h35.1l-.3-5.8-.3-5.7-5.2-.3-5.3-.3v-60.8l5.3-.3 5.2-.3v-12l-17.3-.3-17.3-.2.3 6.2.3 6.3 5.3.3 5.2.3V400h-39v-20h11v-13h-17c-13.6 0-17.2.3-17.6 1.4M185 373.5v6.5h11v61h-11v12h71v-28h-13v16h-34.1l.3-14.3.3-14.2 14.5-.5 14.5-.5v-11l-14.7-.3-14.8-.3V380h33.9l.6 3.3c.4 1.8.6 3.7.5 4.2-.6 3 .2 3.5 6 3.5h6v-24h-71zM275 373.4v6.6h11v61h-11v12h34v-11.9l-5.2-.3-5.3-.3-.3-13.3-.3-13.2h13.6c21.4 0 22.5 1.2 22.5 24.5V453h24v-12h-10.7l-.5-10.8c-.5-11.8-2.2-16.5-7.5-19.9l-2.4-1.6 3.2-1.5c1.7-.9 4.3-3.3 5.8-5.6 2.3-3.5 2.6-5 2.6-12.1 0-7.3-.3-8.6-2.8-12.2-1.6-2.3-5.1-5.3-8-6.9l-5.2-2.9-28.7-.3-28.8-.3zm59.1 9.5c5.2 5.2 3.6 14.1-3.1 17.6-2.2 1.1-6.6 1.5-18 1.5h-15v-22h33.2zM372.2 373.2l.3 6.3 5.3.3 5.2.3V441h-11v12h35v-12h-11v-29.3c.1-32.4-.2-31.7 6-16.5 1.6 4 6.5 15.8 10.9 26.3l7.9 19 3.5.3 3.4.3 6-14.3c3.4-7.9 8.7-20.6 11.8-28.3 3.2-7.7 6.2-14.4 6.7-15 .4-.5.8 12.2.8 28.3V441h-11v12h35v-11.9l-5.7-.3-5.8-.3-.3-30.3-.2-30.2h12v-13.1l-15.7.3-15.7.3-6.9 16.5c-12.4 30.1-14.1 33.9-14.4 33.6-.2-.1-5-11.5-10.6-25.2l-10.4-24.9-15.7-.3-15.7-.3zM493.2 373.2l.3 6.3 5.8.3 5.7.3V441h-12v12h71v-28.1l-6.1.3-6.2.3-.1 7.5-.1 7.5h-34l-.3-10c-.2-5.5 0-11.9.3-14.3l.6-4.2H547v-12h-30.1l.2-10 .1-10H552v11h12v-24h-71.1zM309.5 496.2c-3.2 7.3-8 18.1-10.7 24-2.6 5.9-4.8 11.2-4.8 11.8 0 .7 1.5 1 3.7.8 3.6-.3 3.8-.5 6.6-7.6l2.9-7.2h10.4c11.5 0 10.6-.5 14.5 8.5 2.4 5.6 2.8 6 6.2 6.3 2.2.2 3.7-.1 3.7-.8 0-.6-3.6-8.8-7.9-18.3s-9.3-20.2-10.9-24c-2.6-5.6-3.5-6.7-5.5-6.7-2.1 0-3.1 1.5-8.2 13.2m12 5.8c2.1 5 3.6 9.3 3.3 9.6s-3.7.4-7.5.2l-7-.3 3.5-9.3c2-5 3.6-9.2 3.7-9.2s1.9 4.1 4 9M457.9 484c-7.1 2.1-10.7 7.7-9.5 14.5.7 3.7 5.3 8.3 11.6 11.5 8.5 4.3 12.7 9.9 10.2 13.6-3.1 4.7-14.8 4.2-19.1-.9-2.2-2.7-3.1-2-3.1 2.3 0 3.6.4 4.1 3.8 5.9 3.6 1.8 8.2 2.5 15.1 2.2 2.5-.1 4.4-1.1 7.3-4.1 3.9-3.9 4-4.2 3.6-9.5-.6-6.9-3.2-9.9-13-15-8.1-4.3-10.6-7.4-9-11.1 2.3-4.9 10.1-5.4 17-1.2l3.2 2v-4c0-3.7-.3-4.1-4-5.6-4.3-1.7-9.8-1.9-14.1-.6M254.2 508.2l.3 24.3h7l.3-10.3.3-10.2h3.9c15.8 0 23.9-8.1 19.5-19.6-2.6-6.8-6.5-8.4-20.5-8.4h-11zm21.1-17.1c1.2.7 2.5 1.7 2.9 2.3 1.5 2.2.8 7-1.4 9.3-1.8 1.9-3.2 2.3-8.5 2.3H262v-15h5.6c3 0 6.5.5 7.7 1.1M359 508.5V533h7v-10.5c0-11.3-.1-11.1 5.5-10.5 2.9.3 9.5 7 14 14.5 3.9 6.4 4.1 6.5 8.3 6.5 3.2 0 4.1-.3 3.6-1.3-3.2-5.3-12.5-18.6-14.2-20.1l-2.1-1.9 2.6-2c2.7-2.2 5.3-7.3 5.3-10.8 0-1.1-.8-3.7-1.7-5.6-2.5-5.3-7.6-7.3-19-7.3H359zm20-16.5c1.2 1.2 2 3.3 2 5.4 0 4.8-3.7 7.6-10.1 7.6H366v-15h5.5c4.2 0 6 .5 7.5 2M418 508.5V533h7v-49h-7z"/></svg>
+        </div>
+        <div class="logo-insight">
+          <p>"Hermès provides the tools of luxury. The owner completes the story."</p>
+          <cite>On the carriage without a driver</cite>
+        </div>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <span class="section-tag">The Symbol</span>
+        <h2 class="section-title">A painting acquired in the 1920s<br><em>still running the show.</em></h2>
+        <p class="body-text">
+          In the 1920s, Émile-Maurice Hermès acquired a graphite drawing by French painter Alfred de Dreux titled <em>"Le Duc Attelé, Groom à L'Attente"</em> — a hitched carriage, waiting for its master.
+        </p>
+        <p class="body-text">
+          The logo debuted officially in 1945. Notice what's missing: there is no driver in the carriage. This is intentional. Hermès delivers the craft. You — the owner — complete the story. An 80-year-old logo carrying a 187-year-old idea.
+        </p>
+        <p class="body-text">
+          And it doesn't appear on every product. The deliberate absence on certain pieces is itself the signal — you don't need to announce what you are when everyone already knows.
+        </p>
+        <div style="margin-top: 32px; padding: 24px; background: var(--cream); border: 1px solid rgba(61,31,10,0.1);">
+          <p style="font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 3px; color: var(--brown-mid); text-transform: uppercase; margin-bottom: 12px;">The Psychology</p>
+          <p class="body-text" style="font-size: 16px; margin: 0; font-style: italic;">
+            Most luxury brands scream their logo. Hermès whispers — and the silence costs more.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TACTICS ── -->
+<section class="tactics-section">
+  <div class="section-inner">
+    <div class="tactics-header reveal">
+      <span class="section-tag" style="color: var(--gold);">Five Tactics, One Philosophy</span>
+      <h2 class="section-title">The psychology of<br><em>deliberate refusal.</em></h2>
+    </div>
+    <div class="tactics-grid reveal reveal-delay-1">
+
+      <div class="tactic-card featured">
+        <div class="tactic-num">01</div>
+        <div class="tactic-title">You don't buy a Birkin. <em>They allow you to buy one.</em></div>
+        <p class="tactic-body">
+          You cannot walk into a Hermès boutique and request a Birkin. You must first build a "purchase history" — spending thousands on scarves, belts, and accessories. Then, and only then, a sales associate may offer you the opportunity to buy one. You can purchase a maximum of two bags per year. This is not a waitlist. This is an audition. The psychological effect is the inverse of all retail logic: the harder something is to acquire, the more proof it becomes of your status. Hermès weaponizes rejection as the ultimate marketing tool. The Birkin's secondary market price — $22,000 to $30,000 for a bag retailing at $13,500 — exists entirely because of this system.
+        </p>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-num">02</div>
+        <div class="tactic-title">Prices go <em>up</em> during crises.</div>
+        <p class="tactic-body">
+          When COVID hit in 2020, luxury brands panicked. Hermès raised prices. The Birkin 25 has increased from $9,400 in 2016 to $13,500 in 2026 — a 44% rise over a decade while inflation was far lower. Every price increase makes existing owners wealthier on paper and makes aspiring owners more desperate. It's a self-reinforcing spiral of desire engineered through pricing alone.
+        </p>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-num">03</div>
+        <div class="tactic-title">"We do not do <em>marketing."</em></div>
+        <p class="tactic-body">
+          Axel Dumas, Hermès CEO, stated publicly: "We do not do marketing, we do not try to create an illusion by paying people to wear our products." No celebrity ambassadors. No paid influencers. No Super Bowl ads. The craft is the campaign. And when the CEO says this to the press, it becomes the most powerful marketing statement in luxury — because it proves the brand doesn't need to try.
+        </p>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-num">04</div>
+        <div class="tactic-title">The Birkin as <em>financial asset.</em></div>
+        <p class="tactic-body">
+          Between 1984 and 2015, Birkin bags outperformed gold and the S&P 500 with an average annual return of 14.2%. In July 2025, Jane Birkin's original prototype sold at Sotheby's for $10.1 million — the most expensive handbag ever auctioned. This repositioned the product from fashion to investment thesis, attracting an entirely new class of buyer: wealth managers, collectors, and funds treating Birkins as an asset class.
+        </p>
+      </div>
+
+      <div class="tactic-card">
+        <div class="tactic-num">05</div>
+        <div class="tactic-title">6 generations. <em>Zero outside investors.</em></div>
+        <p class="tactic-body">
+          When LVMH's Bernard Arnault secretly accumulated a 23% stake in Hermès between 2010 and 2013 in an attempted hostile takeover, the Hermès family united 52 members under a holding company called H51, collectively owning 50.2% of capital. They repelled the largest luxury conglomerate in the world. Family ownership is not a legacy choice — it's the structural guarantee that no quarterly earnings call will ever compromise a 187-year-old craft philosophy.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CRAFT SECTION ── -->
+<section class="craft-section">
+  <div class="section-inner">
+    <div class="craft-grid">
+      <div class="reveal">
+        <span class="section-tag">The Silk Carré</span>
+        <h2 class="section-title">18 months.<br>250 cocoons.<br><em>One scarf.</em></h2>
+        <p class="body-text">
+          The Hermès silk scarf — the carré — has been made the same way since 1937. Each one begins with silkworms on Hermès-owned farms in Brazil. A single 90cm scarf requires 450km of silk thread and 250 mulberry moth cocoons.
+        </p>
+        <p class="body-text">
+          The design process alone takes 18 months. Engraving the printing screens requires up to 750 hours of work — one screen per color, up to 40 colors per scarf. Every hem is hand-rolled and hand-stitched by artisans in Lyon, France.
+        </p>
+        <div class="craft-stats">
+          <div class="craft-stat">
+            <span class="craft-stat-num">18</span>
+            <span class="craft-stat-label">Months per design</span>
+          </div>
+          <div class="craft-stat">
+            <span class="craft-stat-num">250</span>
+            <span class="craft-stat-label">Silkworm cocoons</span>
+          </div>
+          <div class="craft-stat">
+            <span class="craft-stat-num">750h</span>
+            <span class="craft-stat-label">Screen engraving</span>
+          </div>
+          <div class="craft-stat">
+            <span class="craft-stat-num">27+</span>
+            <span class="craft-stat-label">Colors per scarf</span>
+          </div>
+        </div>
+      </div>
+      <div class="craft-visual reveal reveal-delay-2">
+        <div class="craft-step">
+          <span class="step-num">Step 01</span>
+          <p class="step-text">Artist commissioned. Design conceptualized over months around an annual theme.</p>
+        </div>
+        <div class="craft-step">
+          <span class="step-num">Step 02</span>
+          <p class="step-text">600+ hours of hand-tracing the design digitally, stroke by stroke.</p>
+        </div>
+        <div class="craft-step">
+          <span class="step-num">Step 03</span>
+          <p class="step-text">Engravers create one printing screen per color — up to 40 screens, taking 750 hours.</p>
+        </div>
+        <div class="craft-step">
+          <span class="step-num">Step 04</span>
+          <p class="step-text">Screen printing on 100-meter tables. Colors applied lightest to darkest.</p>
+        </div>
+        <div class="craft-step">
+          <span class="step-num">Step 05</span>
+          <p class="step-text">Each scarf hand-cut, washed, ironed, and inspected individually.</p>
+        </div>
+        <div class="craft-step">
+          <span class="step-num">Step 06</span>
+          <p class="step-text">Hems hand-rolled and stitched by a seamstress — 40 minutes per scarf, minimum.</p>
+        </div>
+        <div class="craft-step">
+          <span class="step-num">Step 07</span>
+          <p class="step-text">Any scarf with color slippage is destroyed. No exceptions. No seconds market.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BIRKIN PRICES ── -->
+<section class="birkin-section">
+  <div class="section-inner">
+    <div class="birkin-grid">
+      <div class="reveal">
+        <div class="birkin-price-evolution">
+          <p class="price-title">Birkin 30 · Price Evolution</p>
+          <div class="price-row">
+            <span class="price-year">1984</span>
+            <div class="price-bar-wrap"><div class="price-bar" style="width: 8%"></div></div>
+            <span class="price-amount">$2,000</span>
+          </div>
+          <div class="price-row">
+            <span class="price-year">2000</span>
+            <div class="price-bar-wrap"><div class="price-bar" style="width: 28%"></div></div>
+            <span class="price-amount">$5,500</span>
+          </div>
+          <div class="price-row">
+            <span class="price-year">2008</span>
+            <div class="price-bar-wrap"><div class="price-bar" style="width: 40%"></div></div>
+            <span class="price-amount">$7,700</span>
+          </div>
+          <div class="price-row">
+            <span class="price-year">2016</span>
+            <div class="price-bar-wrap"><div class="price-bar" style="width: 57%"></div></div>
+            <span class="price-amount">$11,100</span>
+          </div>
+          <div class="price-row">
+            <span class="price-year">2024</span>
+            <div class="price-bar-wrap"><div class="price-bar" style="width: 74%"></div></div>
+            <span class="price-amount">$13,900</span>
+          </div>
+          <div class="price-row">
+            <span class="price-year">2026</span>
+            <div class="price-bar-wrap"><div class="price-bar" style="width: 80%"></div></div>
+            <span class="price-amount">$14,900</span>
+          </div>
+          <div class="price-row" style="border-bottom: none; padding-top: 24px; margin-top: 8px; border-top: 1px solid rgba(245,239,230,0.08);">
+            <span class="price-year" style="color: var(--gold);">Sotheby's</span>
+            <div class="price-bar-wrap"><div class="price-bar" style="width: 100%; background: linear-gradient(to right, var(--orange), #FF8C42)"></div></div>
+            <span class="price-amount" style="color: var(--gold);">$22K+</span>
+          </div>
+        </div>
+      </div>
+      <div class="birkin-insight reveal reveal-delay-2">
+        <span class="section-tag">The Investment Thesis</span>
+        <blockquote class="insight-quote">
+          "A Birkin outperformed gold and the S&P 500 for 31 years straight."
+        </blockquote>
+        <p class="insight-note">
+          Between 1984 and 2015, Birkin bags delivered an average annual return of 14.2% — beating both gold (1.9%) and the S&P 500 (11.66%) over the same period.
+        </p>
+        <p class="insight-note" style="margin-top: 16px;">
+          At Sotheby's, the average resale price for a classic Birkin 30 in 2025 was $22,300 — a 2.4x premium over retail. Pristine examples in rare colors regularly trade between $28,000 and $30,000.
+        </p>
+        <p class="insight-note" style="margin-top: 16px;">
+          In July 2025, Jane Birkin's original prototype — the bag Dumas sketched on that flight in 1984 and delivered to her in 1985 — sold for <strong>$10.1 million</strong> at Sotheby's Paris. The most expensive handbag ever sold at auction.
+        </p>
+        <span class="investment-badge">Bag as Asset Class</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <div class="cta-logo">
+      <svg xmlns="http://www.w3.org/2000/svg" width="981.333" height="981.333" viewBox="0 0 736 736"><path d="M449.3 203.7c-1.8 1.2-2.9 1.3-5.3.5-3-1.1-3.9-.5-2.1 1.3.6.6-.1 2.5-2 5-1.6 2.2-3.1 4.7-3.5 5.5-.3.8-1 2.4-1.4 3.5-1.4 3.1-2.8 13.3-2.2 16 .3 1.6 1.1 2.5 2.3 2.5.9 0 4.6 2.3 8.1 5.1 6.4 5.2 13.6 9.2 15 8.3s.9-10.2-.8-14.4c-1.6-3.9-1.6-4 .7-5.9 1.3-1.1 2.8-1.6 3.2-1.2 1.1 1.1 1.4 19.9.4 23.3-.9 3.3-4.3 4.5-8.6 3-2.4-.9-3.2-.7-4.6.7-.8 1-6.6 4.4-12.8 7.6s-11.4 5.9-11.5 6.1c-.9.7 1.2 6.7 3.8 10.6 3.3 4.9 7 7.4 14.9 9.8l5.6 1.7 3.3 8.4c1.8 4.6 4.4 10.6 5.8 13.3 1.3 2.8 2.4 6.4 2.4 8.2s.6 3.4 1.4 3.7c.9.4 1.2 1.4.9 2.6-.5 2.1-1 2.1-37.4 2.1-34.5 0-36.9-.1-36.7-1.8.1-.9 0-4.2 0-7.3-.2-5.1-.6-6-4.6-10.2-5.6-6-6.3-9.2-2.7-12.6 1.5-1.4 4.6-4.3 6.9-6.5 2.6-2.3 4.2-4.8 4.2-6.1s.7-2.6 1.6-2.9c3-1.2 9.4-.6 14.1 1.3 5.3 2.1 7.4 2.4 14.3 2.2 7.2-.2 8-1.3 3.9-5.8-1.9-2.1-4.1-4.9-5-6.3l-1.6-2.5-9.4 3.7c-20.8 8-51 16.8-57.9 16.8-1.9 0-10.8 1.8-19.7 4.1-11.3 2.8-16.8 3.7-17.9 3.1-1.4-.8-1-1.2 2.2-2.2 7.9-2.6 11.8-6.9 17-18.7 1.7-4.1 3.4-7.6 3.7-7.9.2-.3 1.4 1.4 2.6 3.8 2.7 5.4 6.1 7.9 11.7 8.6 3.1.3 4.5 1 4.9 2.3.7 2.1 2.2 2.4 5.8 1 1.9-.8 2.3-1.5 1.9-3.9-.3-2.3.1-3.3 1.7-4.1 2-1.1 2.1-.9 2.1 2.9 0 3.5.3 4.1 1.8 3.6.9-.2 3.5-1 5.8-1.6 3.7-1.1 4.2-1.6 5.3-5.8 1.8-6.8 7.7-17.9 13.2-24.9l4.8-6.2-5.5-1.2c-7.7-1.7-14.9-.1-23.9 5.3-8.9 5.5-12.2 11.3-13.2 23l-.6 7.8h-3.8c-4.9 0-9.2-3.6-11.5-9.6-1.7-4.4-1.7-4.7.3-8.8 1.2-2.4 4.4-7 7.2-10.4 6.3-7.5 5.3-8.1-1.7-1.1-3.9 3.9-6.8 8.5-11.8 18.5-5.1 10.3-7.6 14.3-11 17.3-6.6 5.8-15.8 7.6-23.2 4.5-5.3-2.2-8.7-5.7-15.2-15.9-10.8-16.8-13.4-18.2-36.4-20.1l-16-1.2-2.6-3.1c-2.6-3.2-4.6-3.9-5.2-2-.3.9-1 .9-2.6 0-3.1-1.7-6.2-.5-6.2 2.3 0 3.4 3.5 7.3 9.1 10.1l4.9 2.5v6c0 7.9-1.2 10.5-5.9 12.9-4.8 2.5-7.1 5.6-7.1 9.6 0 4.2-6.1 10-12.3 11.6-5.6 1.4-6 2.4-1.2 3.3 3.4.7 3.5.8 3.5 5.6 0 6.2 1.3 9.7 5.3 13.8 4.6 4.8 8.4 6.5 14.7 6.5 9.9 0 17.5-5.8 20-15.2.6-2.4.9-5.9.5-7.8-.6-3.1-.4-3.4 2.5-3.9 4.7-1 4.4-2-.8-3.4-2.6-.8-6.4-2.8-8.4-4.6-4.5-4.1-10.5-5.8-16.9-4.9-4.7.7-4.9.6-4.9-1.7 0-3.1.9-4.2 4.9-6.3 4.4-2.2 10.3-1.7 22.6 2.1 7.7 2.3 11.1 2.8 23.5 3l14.4.3 2.3 3.8 2.3 3.8 6.7-.3c6.8-.2 6.8-.2 3.8 1.4-1.6.9-4.3 2.8-6 4.3-1.6 1.5-4.9 3.6-7.2 4.6-2.4 1-4.3 2.2-4.3 2.6s1.6 1.1 3.5 1.5c3.1.5 3.5 1 3.5 3.5 0 3.5 2.4 9.6 4.8 12.2 7.5 8.3 22.6 7.1 28.8-2.2 2.8-4.3 3.7-10.9 2.1-16.2-.7-2.1-.4-2.7 1.8-3.7 3.7-1.7 5.9-1.5 8 .8 3.5 3.9 8.3 2.3 9.1-3.1 1-6.3 5.5-9.2 17.4-11.3l3.4-.6-2.7 2.8c-1.5 1.5-2.7 3.9-2.7 5.2 0 1.2-1 7-2.2 12.6-2 9.7-2 10.5-.5 12.2 2.3 2.6 2.2 5.2-.3 5.2-1.1 0-2.1-.3-2.1-.8-.9-5.5-.4-12.8 1.2-19 2-7.8 2.5-14.3 1.1-12.7-1.5 1.6-6.3 23.8-5.4 24.4.5.3.7 2.3.4 4.3l-.4 3.7-14.6.3c-10.5.2-14.7.6-15 1.5-.3 1 4.3 1.3 20.7 1.3 16.6 0 21.1-.3 21.1-1.3 0-.7-.4-1.7-.9-2.2-3.3-3.5-3.1-14.5.5-22 2.2-4.8 13.9-16.5 20.7-20.9 4.7-3.1 2.9-.3-3.4 5.4-9.4 8.4-9.9 8.9-9.9 10.5 0 .8 2.5 3.3 5.6 5.6 4 2.9 6.1 5.4 7.5 8.7 1.8 4.2 1.9 4.8.5 5.8-2 1.4-2 2.8-.1 4.4 2.9 2.4 1.4 3-8.1 3-7.2 0-9.5.3-9.2 1.2.6 1.8 111.8 2.4 111.8.7 0-.6-1.8-2.8-3.9-4.8-4.5-4-6.1-7.5-6.1-12.9-.1-2-1-6.2-2.1-9.2-3-8.4-3.5-18.6-1.4-25.9l1.9-6 5-1c2.8-.6 7.9-1.5 11.4-2.2 6.7-1.3 8.6-3 2.3-2.2-4.4.6-10-2.2-17.3-8.6l-4.3-3.8-.1-14.4c-.1-14 0-14.5 2.4-17.1 1.3-1.4 3.1-2.4 3.8-2.1 1.7.6 1.9-1.3.2-2-1-.4-1-.8.1-1.5.7-.5 1-1.5.7-2.1-.5-.7.1-1.1 1.3-1.1 2.3 0 2.8-2.2.9-3.7-.7-.5-3.4-1.7-6-2.7s-5.6-2.8-6.5-4c-2.3-2.9-8-3.9-11-1.9m5.7 3.3c0 .5-.4 1-1 1-.5 0-1-.5-1-1 0-.6.5-1 1-1 .6 0 1 .4 1 1m14 8.4c0 1.1-1.9 1.5-2.5.6-.3-.5.1-1 .9-1 .9 0 1.6.2 1.6.4m-2.3 4.2c.3 1-.4 2.6-2 4.1l-2.5 2.5-.7-3.2c-.5-2.3-.3-3.5.6-4.1 2.1-1.3 3.9-1.1 4.6.7m-6.5 3.9c.6 2.5.3 3.4-1.7 5.5-3.1 3.1-4.5 1.9-5.2-4.4l-.6-4.6 3.4.3c2.7.2 3.4.8 4.1 3.2M226.1 254c5.6 2.9 7.2 3.2 21.4 4 15.8.9 22.2 2.5 25.4 6.3 1.2 1.6 1 1.5-2.5 0-3.3-1.5-6.6-1.7-21.6-1.5-19.3.3-22.6-.3-28-5.5-2.8-2.6-3.8-6.3-1.8-6.3.6 0 3.8 1.4 7.1 3m143.7 3.7c-1.7 2.8-2.2 5.3-2.3 11.1 0 5.9-.4 7.6-1.8 8.3-1.9 1.1-2 .8-1.7-7.6.2-5.3 2.1-10.8 4.7-13.7 2.7-3 3.3-2 1.1 1.9m102 7.7c6.9 4.3 6.8 5-.9 6.1l-4.6.7-.6-3.4c-.3-1.8-.9-4.4-1.3-5.7-.8-2.8-.7-2.8 7.4 2.3m-229.9 19.4c-.4.2-1.7-.1-2.8-.7s-3.6-1.1-5.5-1.1c-4.2 0-4 .3-2.2-4.2l1.5-3.5 4.9 4.6c2.8 2.5 4.6 4.7 4.1 4.9m200 2.3c1.8.4 4.8.5 6.5.2 4-.6 7.1 2.1 3.6 3.2-3.1 1-8.9-.3-14-3.1-2.5-1.4-3.4-2.2-2-1.8s4 1.1 5.9 1.5m15.5 13.1c1.6 4.6 4.1 11.3 5.7 15s3.2 8.1 3.6 9.8c.3 1.8 1.2 3.4 1.9 3.7 2.1.8 1.7 2.3-.6 2.3-1.1 0-2.3-.8-2.6-1.8-.3-.9-1.1-3.1-1.8-4.7-.7-1.7-1.9-4.6-2.5-6.5-.7-1.9-2.8-7.6-4.6-12.5-4.8-13.2-4.8-13.5-3.2-13.5.8 0 2.4 3.2 4.1 8.2m-225.5-1.7c.2.2.1 1-.2 1.8-.3.9-1.6 1.2-3.6.9-2.9-.4-4-2-2.4-3.6.7-.6 5.3 0 6.2.9m110.9 2.2c-.9 2.4-2 3.3-4.6 3.8-3.1.6-9.2-1.1-9.2-2.6 0-.5 7.6-2.9 13.5-4.4 1.5-.4 1.6-.1.3 3.2m-106.6 1.1c-2.7.4-3.7-.2-2.7-1.7.4-.8 1.3-.7 2.8.1l2.2 1.3zM221 301c0 .5-.9 1-2.1 1-1.1 0-1.7-.5-1.4-1 .3-.6 1.3-1 2.1-1s1.4.4 1.4 1m85 1.9c0 .9-6 2.4-6.8 1.6-.5-.5 3.6-2.3 5.6-2.4.6-.1 1.2.3 1.2.8m-81.2 2.8c.4 2.7-1.4 3-4 .6-2.6-2.3-2.2-3.5 1-3.1 1.9.2 2.8.9 3 2.5m5.2-1.5c0 2.2-1.7 4.1-2.9 3.4-1.9-1.2-1.3-4.6.9-4.6 1.1 0 2 .6 2 1.2m8-.5c0 1.4-3.4 4.3-5.2 4.3-1.9 0-2.2-.8-1.2-3.4.6-1.5 6.4-2.4 6.4-.9m-19.5 2.3c1.8 2 1.7 2-2.3 2-4.5 0-4.5 0-3.6-2.4.8-2.2 3.7-2 5.9.4m95.5-1.5c0 .4-.7 1.9-1.5 3.5-1.8 3.4-4.5 4-4.5 1 0-1.1 0-2.3-.1-2.8 0-.4 1-1 2.3-1.4 3.1-.8 3.8-.9 3.8-.3m11.7 1.1c-2.7 1.5-4.7 1.2-4.7-.7 0-.5 1.7-.9 3.8-.9l3.7.1zm-117.2.4c-.3.5-1.6 1-2.8.9-2-.1-2-.2.3-.9 1.4-.4 2.6-.8 2.8-.9s0 .3-.3.9m33.5-.1c0 .9-2.4 2.1-4.2 2.1-.6 0-.6-.6.2-1.5 1.4-1.6 4-2 4-.6m6.3-.2c-.7.2-1.9.2-2.5 0-.7-.3-.2-.5 1.2-.5s1.9.2 1.3.5m69.7.8c1 1.2.8 1.6-1.5 2.5-3.5 1.3-3.9 1-1.9-1.8 1.8-2.6 1.8-2.6 3.4-.7m-12 2.5c0 3.5-1 3.8-3.4 1.1-2.1-2.3-1.4-4.1 1.5-4.1 1.4 0 1.9.7 1.9 3m-4 3.1c0 1-7.3 1.3-8.3.3s.5-3.5 2.7-4.4c1.6-.6 2.5-.3 3.9 1.2.9 1.1 1.7 2.4 1.7 2.9m-58.9-1.2c-1.6 1-10.2 2.3-10.9 1.6-1.2-1.2 2.4-3.4 6.1-3.7 4.6-.3 7 .8 4.8 2.1m-25.2 1.2c4.9 1.5 5.2 2.6.9 3.4-6.9 1.2-8.2 1-8.6-.8-.5-2.7.6-5 2.2-4.4.8.3 3.2 1.1 5.5 1.8m4.6-1.1c.7 1.2-.2 1.2-3 0-1.9-.8-1.9-.9.2-.9 1.2-.1 2.5.3 2.8.9m67.5-.1c0 1.5-1.7 2.2-3.6 1.4-1.6-.6-1.6-.7.2-1.4 2.7-1.1 3.4-1 3.4 0m30.5-.1c-.6.5-2.9 1.6-5.2 2.5-3.5 1.4-4.3 1.4-4.3.3 0-.7 1.5-1.8 3.3-2.4 4-1.3 7.4-1.5 6.2-.4M244 316c0 3.5-.8 3.6-7.4 1.4-6.5-2.2-5.1-3.3 5.7-4.2 1.3-.2 1.7.5 1.7 2.8m78.2-.6c.8 4.1-.3 4.8-5.5 3.4-2.6-.7-4.7-1.6-4.7-2 0-.9 5.8-3.6 8.1-3.7 1-.1 1.9.9 2.1 2.3m-21.4.2c3.2.9 2.8 1.7-2.5 4.3-5 2.4-6.3 1.9-6.3-2.7 0-1.8.5-2.2 3.3-2.2 1.7 0 4.2.3 5.5.6m-82.2 5c-4.3 3.7-6.1 4.2-7 1.8-1.3-3.3-.5-4.1 4.7-5.1 2.8-.5 5.4-.7 5.7-.5s-1.3 1.9-3.4 3.8m24.1.7c.7.7-2 4.7-3.1 4.7-1.5 0-7.6-6.2-7.6-7.7 0-1 1.2-.8 5.1.7 2.8 1 5.3 2.1 5.6 2.3m-20 3.2c-1.1 3-2.3 5.5-2.7 5.5s-1.8-.9-3.1-2l-2.4-2 4-3.4c5.7-5 6.6-4.6 4.2 1.9m10.8-1.8c4 4.4 4.3 5.8 1.6 7.3-3.9 2-4.5 1.4-5.6-6.4-.4-2.5-.5-4.6-.1-4.6.3 0 2.1 1.7 4.1 3.7m83.1-2.6c4.6 1.2 5.1 1.8 3.4 5-1.5 2.6-2.6 2.4-6-1.4-4.5-4.9-4.3-5.3 2.6-3.6m-88 6.6.7 5.3h-3.1c-1.7 0-3.3-.3-3.5-.8-.8-1.2 3.4-11.5 4.3-10.5.5.4 1.2 3.2 1.6 6m75.4-6.2c0 1.1-5.3 8.5-6 8.5-.9 0-4.4-5-3.8-5.5 2.6-2.2 9.8-4.4 9.8-3m3 6.6c0 4.1-.3 4.9-1.8 4.9-1 0-2.6-.6-3.6-1.3-1.6-1.2-1.6-1.5 1-5.5 1.5-2.3 3.1-3.9 3.6-3.6.4.3.8 2.7.8 5.5m6-2.9c1.6 1.8 3 3.8 3 4.5 0 1.1-5.9 3.7-6.7 2.9s-1.5-7.6-1-9.1c.9-2.1 1.3-1.9 4.7 1.7"/><path d="M433.8 207.7c-4.3.4-4.7.6-3.6 2.3.9 1.4.9 2.2-.1 3.4-.7.8-1 2-.7 2.5.4.5.2 1.3-.4 1.6-.6.4-1.1 2.1-1.1 3.8v7.7c0 2.5.4 6.5.9 8.8.9 4.1.8 4.6-1.9 7.7-2.8 3.1-2.9 3.7-2.9 12.9v9.6l7.3-3.6c5.8-2.9 14-7.9 16.6-10.1.9-.7-10.5-11.6-13.5-12.9-2.9-1.2-3.3-1.9-3.9-7.1-1-9.2 2.1-20.2 7.1-24.8 1.5-1.4 2.3-2.4 1.8-2.3s-3 .3-5.6.5M397.8 252.1c-2 2.1-5.2 6.7-7.1 10.1-3.7 6.7-8.3 18.5-7.5 19.3 1.1 1.1 31.8-9.2 34-11.3.4-.4.1-2.5-.7-4.7s-1.4-6.6-1.5-9.8c0-4.7-.3-5.7-1.7-5.8-1 0-4-.4-6.8-.8-4.9-.9-5.1-.8-8.7 3M417.5 252c-.9 4 .3 12.4 2.1 14.7 1.2 1.6 1.3.6 1.2-8-.1-7.1-.4-9.7-1.4-9.7-.7 0-1.5 1.4-1.9 3M511.5 251c-1 1.1-2.8 2-4.1 2-3 0-3.7 1.3-1.9 3.6.8 1.1 1.4 1.4 1.5.6 0-2.4 3.5-1.2 5.3 1.9 2.2 3.9.8 7.4-4.3 10.3l-3.5 1.9 2.7-2.9 2.7-3-2.1-1.3c-1.9-1.2-2-1.1-1.4.5.4 1.1-.1 2.5-1.4 3.9-2.8 2.9-6 12.5-6 17.8 0 2.5-1.2 7.1-3 11.2-1.6 3.9-3 8.2-3 9.7 0 1.4 1.4 6 3 10.1 1.7 4.2 3 8.5 3 9.6 0 3-3 4.1-11.5 4.1-5.7 0-7.6.3-7.3 1.2.6 1.8 17.2 2.3 21.1.7 2.8-1.2 2.9-1.3 2.2-6.8-.3-3.1-1.3-7.8-2.1-10.4-1.7-5.1-1.3-7.7.9-7.7 2.3 0 4 5.1 4.5 13.5.3 6.6.1 8.3-1.2 9.4-2.2 1.9-2 3.1.7 3.1 1.2 0 3.2-1.1 4.5-2.4 2.5-2.7 2.8-6.3 1.2-14.5-1.2-6.3.2-10.1 3.6-10.1 1.3 0 2.5-.4 2.8-.9s-.3-4.1-1.3-8.1l-1.8-7.2 2.8-2.6c1.7-1.5 2.9-3.5 2.9-5 0-4-2.2-10.5-4.6-13.9-1.9-2.6-2.1-3.2-.9-3.7.8-.3 1.5-1.8 1.5-3.3 0-1.4 1-3.7 2.2-5l2.2-2.3-2.1-2.8c-2.5-3.4-5.4-3.9-7.8-1.2m-4.5 38c0 1-1.4 1.4-4 1-2.2-.3-2.4-.8-1-2.5.9-1.1 1.7-1.2 3.1-.4 1 .5 1.9 1.4 1.9 1.9m3.1 3.1c-.9 2.8 0 8.4 1.4 9.1.8.5 1.2 1.4 1 2.1-.2.6-.6 2.5-.9 4-.4 1.5-1.1 2.5-1.6 2.2s-1 .7-1.2 2.2l-.4 2.8-1.7-3.5c-.9-1.9-2.2-5.5-2.8-8l-1.2-4.5-1 3c-.5 1.6-1.6 3.7-2.3 4.6-.8.8-1.4 2.5-1.4 3.7 0 2.5-2.5 3-3.4.6-1-2.7-.7-4.2 2.5-11.8 2.4-5.9 3.5-7.3 4.8-6.9.9.4 2 1.2 2.4 2 1.2 1.9 2.7 1.6 2.7-.5 0-1 .3-2.2.7-2.6 1.1-1.1 2.8 0 2.4 1.5m-10.3 24.3c.3 1.2-.1 1.7-1 1.4-.7-.3-1.5-1.3-1.6-2.2-.3-1.2.1-1.7 1-1.4.7.3 1.5 1.3 1.6 2.2m10.7 1.4c0 1.8-2 1.5-2.3-.4-.3-1 .1-1.5 1-1.2.7.3 1.3 1 1.3 1.6M202.2 332.2c.3.8 2.7 1.4 5.8 1.6 4.7.3 5.2.1 4-1.2-1.6-2-10.4-2.3-9.8-.4M242.7 331.7c-2 2 1.6 2.3 25.4 2.3 23.1 0 26-.2 24.9-1.5-1-1.3-5.2-1.5-25.5-1.5-13.3 0-24.5.3-24.8.7M513.3 331.7c-2.8 1.1-1.1 2.3 3.2 2.3 3.3 0 4.5-.4 4.5-1.5 0-1.5-4.8-2-7.7-.8M202 338.9v3.1h319v-6l-104.2.4c-57.4.3-107 .5-110.3.5-12.7-.2-72.3-.1-78.5.1-3.6.1-10.9-.2-16.2-.5l-9.8-.7zM515 355.7c0 .5 1.3 2.3 2.8 4.1l2.7 3.3 12.3-.3 12.2-.3-3.1-3.8-3-3.7h-12c-6.5 0-11.9.3-11.9.7M605.3 366.9c-8.2 2.8-12.7 6.3-15.7 12.2-5.9 11.9-1.2 24.2 11.4 29.8 2.5 1.1 9.5 2.9 15.5 4.1 14.6 2.9 21.1 5.8 23 10.4 4.5 10.8-2.1 19.2-16 20.4-13.2 1-22.8-4.9-25.6-15.9l-1.3-4.9H585v30h6c5.8 0 6-.1 6-2.6 0-1.4.3-2.4.8-2.2 12 6.1 14.6 7 21.6 7.5 13.7 1 26.6-5.1 31.8-15.1 1.7-3.2 2.2-5.8 2.2-11.6-.1-16.4-8.4-23.3-33.2-27.5-17.6-2.9-23.8-9.1-18.3-18.1 5.8-9.4 25.5-8.1 32.5 2.2 1.4 2.1 2.6 4.4 2.6 5.1 0 .9 1.8 1.3 6 1.3h6v-25.1l-5.7.3c-5.7.3-5.8.4-5.5 3 .4 3.3-.8 3.6-3.3.8-2.4-2.6-13.4-6-19.4-6-2.5.1-6.9.9-9.8 1.9M82.4 368.4c-.3.7-.4 3.5-.2 6.2l.3 4.9 5.3.3 5.2.3V441H82v12h35v-12h-11.1l.3-14.3.3-14.2h38l.3 14.2.3 14.3H134v12h35.1l-.3-5.8-.3-5.7-5.2-.3-5.3-.3v-60.8l5.3-.3 5.2-.3v-12l-17.3-.3-17.3-.2.3 6.2.3 6.3 5.3.3 5.2.3V400h-39v-20h11v-13h-17c-13.6 0-17.2.3-17.6 1.4M185 373.5v6.5h11v61h-11v12h71v-28h-13v16h-34.1l.3-14.3.3-14.2 14.5-.5 14.5-.5v-11l-14.7-.3-14.8-.3V380h33.9l.6 3.3c.4 1.8.6 3.7.5 4.2-.6 3 .2 3.5 6 3.5h6v-24h-71zM275 373.4v6.6h11v61h-11v12h34v-11.9l-5.2-.3-5.3-.3-.3-13.3-.3-13.2h13.6c21.4 0 22.5 1.2 22.5 24.5V453h24v-12h-10.7l-.5-10.8c-.5-11.8-2.2-16.5-7.5-19.9l-2.4-1.6 3.2-1.5c1.7-.9 4.3-3.3 5.8-5.6 2.3-3.5 2.6-5 2.6-12.1 0-7.3-.3-8.6-2.8-12.2-1.6-2.3-5.1-5.3-8-6.9l-5.2-2.9-28.7-.3-28.8-.3zm59.1 9.5c5.2 5.2 3.6 14.1-3.1 17.6-2.2 1.1-6.6 1.5-18 1.5h-15v-22h33.2zM372.2 373.2l.3 6.3 5.3.3 5.2.3V441h-11v12h35v-12h-11v-29.3c.1-32.4-.2-31.7 6-16.5 1.6 4 6.5 15.8 10.9 26.3l7.9 19 3.5.3 3.4.3 6-14.3c3.4-7.9 8.7-20.6 11.8-28.3 3.2-7.7 6.2-14.4 6.7-15 .4-.5.8 12.2.8 28.3V441h-11v12h35v-11.9l-5.7-.3-5.8-.3-.3-30.3-.2-30.2h12v-13.1l-15.7.3-15.7.3-6.9 16.5c-12.4 30.1-14.1 33.9-14.4 33.6-.2-.1-5-11.5-10.6-25.2l-10.4-24.9-15.7-.3-15.7-.3zM493.2 373.2l.3 6.3 5.8.3 5.7.3V441h-12v12h71v-28.1l-6.1.3-6.2.3-.1 7.5-.1 7.5h-34l-.3-10c-.2-5.5 0-11.9.3-14.3l.6-4.2H547v-12h-30.1l.2-10 .1-10H552v11h12v-24h-71.1zM309.5 496.2c-3.2 7.3-8 18.1-10.7 24-2.6 5.9-4.8 11.2-4.8 11.8 0 .7 1.5 1 3.7.8 3.6-.3 3.8-.5 6.6-7.6l2.9-7.2h10.4c11.5 0 10.6-.5 14.5 8.5 2.4 5.6 2.8 6 6.2 6.3 2.2.2 3.7-.1 3.7-.8 0-.6-3.6-8.8-7.9-18.3s-9.3-20.2-10.9-24c-2.6-5.6-3.5-6.7-5.5-6.7-2.1 0-3.1 1.5-8.2 13.2m12 5.8c2.1 5 3.6 9.3 3.3 9.6s-3.7.4-7.5.2l-7-.3 3.5-9.3c2-5 3.6-9.2 3.7-9.2s1.9 4.1 4 9M457.9 484c-7.1 2.1-10.7 7.7-9.5 14.5.7 3.7 5.3 8.3 11.6 11.5 8.5 4.3 12.7 9.9 10.2 13.6-3.1 4.7-14.8 4.2-19.1-.9-2.2-2.7-3.1-2-3.1 2.3 0 3.6.4 4.1 3.8 5.9 3.6 1.8 8.2 2.5 15.1 2.2 2.5-.1 4.4-1.1 7.3-4.1 3.9-3.9 4-4.2 3.6-9.5-.6-6.9-3.2-9.9-13-15-8.1-4.3-10.6-7.4-9-11.1 2.3-4.9 10.1-5.4 17-1.2l3.2 2v-4c0-3.7-.3-4.1-4-5.6-4.3-1.7-9.8-1.9-14.1-.6M254.2 508.2l.3 24.3h7l.3-10.3.3-10.2h3.9c15.8 0 23.9-8.1 19.5-19.6-2.6-6.8-6.5-8.4-20.5-8.4h-11zm21.1-17.1c1.2.7 2.5 1.7 2.9 2.3 1.5 2.2.8 7-1.4 9.3-1.8 1.9-3.2 2.3-8.5 2.3H262v-15h5.6c3 0 6.5.5 7.7 1.1M359 508.5V533h7v-10.5c0-11.3-.1-11.1 5.5-10.5 2.9.3 9.5 7 14 14.5 3.9 6.4 4.1 6.5 8.3 6.5 3.2 0 4.1-.3 3.6-1.3-3.2-5.3-12.5-18.6-14.2-20.1l-2.1-1.9 2.6-2c2.7-2.2 5.3-7.3 5.3-10.8 0-1.1-.8-3.7-1.7-5.6-2.5-5.3-7.6-7.3-19-7.3H359zm20-16.5c1.2 1.2 2 3.3 2 5.4 0 4.8-3.7 7.6-10.1 7.6H366v-15h5.5c4.2 0 6 .5 7.5 2M418 508.5V533h7v-49h-7z"/></svg>
+    </div>
+    <h2 class="cta-title">
+      True luxury is built<br>
+      <em>on what you refuse.</em>
+    </h2>
+    <p class="cta-sub">
+      Hermès doesn't sell exclusivity. It engineers the conditions for desire — then steps back and lets scarcity do the work.
+    </p>
+    <div class="cta-divider"></div>
+    <p class="cta-footer">Hermès Paris · Est. 1837 · Savoir-Faire Since Six Generations</p>
+    <p class="cta-footer" style="margin-top: 16px;">Made by Mostafa Yasser</p>
+    <p class="cta-footer" style="margin-top: 8px;">m49152646@gmail.com</p>
+  </div>
+</section>
+
+<script>
+  // Intersection Observer for reveal animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
